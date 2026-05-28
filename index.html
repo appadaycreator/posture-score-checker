@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#6366F1" />
     <title>姿勢スコア診断ツール【無料】無料診断・アドバイス</title>
     <meta name="description" content="日常の姿勢習慣から猫背・反り腰などの問題を診断。改善エクサイズも提案。登録不要・完全無料でご利用いただけます。">
     <link rel="canonical" href="https://appadaycreator.com/posture-score-checker/">
@@ -12,6 +13,7 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:image" content="https://appadaycreator.com/assets/ogp-default.png">
+<meta property="og:site_name" content="appadaycreator" />
     <meta name="twitter:card" content="summary">
     <link rel="canonical" href="https://appadaycreator.com/posture-score-checker/">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦴</text></svg>">
@@ -71,7 +73,17 @@
         .tag-good { background:#dcfce7; color:#166534; }
         .q-option-btn { width:100%; padding:12px; margin-bottom:8px; border:2px solid #e5e7eb; border-radius:10px; font-size:14px; cursor:pointer; background:#fff; text-align:left; transition:.2s; }
         .q-option-btn:hover { border-color:#EA580C; background:#FFF7ED; }
-    </style>
+    
+@media print{
+  header,footer,nav,button,.no-print,
+  [class*="share"],[class*="affiliate"],[id*="share"],
+  [id*="affiliate"],[id*="banner"],
+  script,noscript{display:none!important}
+  body{background:#fff!important;color:#000!important;font-size:12pt}
+  [id*="result"],[id*="output"],[id*="advice"],[id*="diagnosis"],[class*="result"]{display:block!important}
+  a[href]::after{content:none!important}
+}
+</style>
 </head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TXQGZRF9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -365,6 +377,8 @@
         <div class="score-ring">
           <svg viewBox="0 0 120 120" width="120" height="120">
             <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#e5e7eb" stroke-width="${strokeW}"/>
+<meta name="twitter:image" content="https://appadaycreator.com/assets/ogp-default.png" />
+<meta name="twitter:description" content="日常の姿勢習慣から猫背・反り腰などの問題を診断。改善エクサイズも提案。登録不要・完全無料でご利用いただけます。" />
             <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${color}" stroke-width="${strokeW}"
               stroke-dasharray="${dashArr.toFixed(1)} ${circ.toFixed(1)}" stroke-linecap="round"/>
           </svg>
