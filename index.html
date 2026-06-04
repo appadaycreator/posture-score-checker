@@ -42,7 +42,7 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"姿勢スコア診断ツール【無料】無料診断・アドバイスの使い方","step":[{"@type":"HowToStep","position":1,"name":"必要事項を入力する","text":"フォームに必要な情報（数値・選択肢・条件）を入力または選択する"},{"@type":"HowToStep","position":2,"name":"診断・計算を実行する","text":"「診断する」「計算する」または「確認する」ボタンを押して結果を取得する"},{"@type":"HowToStep","position":3,"name":"結果・分析を確認する","text":"表示された診断結果・計算結果・グラフをじっくり確認する"},{"@type":"HowToStep","position":4,"name":"アドバイスを活用する","text":"結果に基づくアドバイスや提案を日常生活に取り入れる"},{"@type":"HowToStep","position":5,"name":"定期的に再チェックする","text":"生活変化に応じて定期的に再診断して進捗を追跡する"}]}</script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', 'Noto Sans JP', sans-serif; background: linear-gradient(135deg, #FFEDD5 0%, #FFF7ED 100%); min-height: 100vh; color: #333; line-height: 1.6; }
+        body { font-family: 'Inter', 'Noto Sans JP', sans-serif; background: #f8fafc; min-height: 100vh; color: #333; line-height: 1.6; }
         .site-header { background: #EA580C; color: white; padding: 32px 20px; text-align: center; }
         .site-header .emoji { font-size: 52px; margin-bottom: 8px; }
         .site-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
@@ -66,14 +66,18 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
             .site-header h1 { font-size: 20px; }
             .site-header p { display: none; }
             .card { padding: 16px; }
-            .btn { font-size: 15px; padding: 13px 20px; }
+            .btn { font-size: 15px; padding: 13px 20px; min-height: 48px; }
             .result-value { font-size: 28px; }
+            #q-text { font-size: 16px !important; }
+            .q-option-btn { min-height: 48px; padding: 14px 12px; font-size: 14px; }
+            .score-ring { width: 160px; height: 160px; margin: 0 auto 16px; }
+            .score-ring .score-num { font-size: 2.5rem; }
         }
         /* ── サービス固有CSS ── */
 
-        .score-ring { position:relative; width:120px; height:120px; margin:0 auto 12px; }
+        .score-ring { position:relative; width:160px; height:160px; margin:0 auto 16px; }
         .score-ring svg { transform:rotate(-90deg); }
-        .score-ring .score-num { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:2rem; font-weight:700; }
+        .score-ring .score-num { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:2.5rem; font-weight:700; }
         .exercise-card { background:#FFF7ED; border:1.5px solid #fed7aa; border-radius:10px; padding:12px 14px; margin-bottom:8px; }
         .exercise-card h4 { font-size:14px; font-weight:700; color:#c2410c; margin-bottom:4px; }
         .exercise-card p { font-size:13px; color:#555; line-height:1.5; margin:0; }
@@ -98,6 +102,8 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
 ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!important;height:0!important}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://appadaycreator.com/"},{"@type":"ListItem","position":2,"name":"健康","item":"https://appadaycreator.com/category/health/"},{"@type":"ListItem","position":3,"name":"姿勢スコア診断ツール無料診断・アドバイス","item":"https://appadaycreator.com/posture-score-checker/"}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZDPNYD2875"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-ZDPNYD2875',{send_page_view:false});</script>
 </head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TXQGZRF9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -111,8 +117,8 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
     </header>
 
     <main id="main-content" class="container" role="main" aria-label="姿勢スコア診断ツールのメインコンテンツ">
-        <ins class="adsbygoogle" style="display:block;min-height:0;margin:12px 0" data-ad-client="ca-pub-8427583028015858" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        <ins class="adsbygoogle" style="display:block;min-height:90px;margin:12px 0" data-ad-client="ca-pub-8427583028015858" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>try{(adsbygoogle = window.adsbygoogle || []).push({});}catch(e){}</script>
 
         <div class="card" id="quiz-start">
           <h2 style="font-size:18px;font-weight:700;margin-bottom:12px;">🦴 姿勢スコア診断ツール</h2>
@@ -121,7 +127,7 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
         </div>
         <div id="quiz-area" style="display:none;">
           <div style="font-size:12px;color:#999;margin-bottom:8px;">
-            質問 <span id="q-num">1</span> / <span id="q-total">5</span>
+            質問 <span id="q-num">1</span> / <span id="q-total">10</span>
           </div>
           <div id="q-progress" style="height:4px;background:#e5e7eb;border-radius:2px;margin-bottom:16px;">
             <div id="q-bar" style="height:100%;background:#EA580C;border-radius:2px;transition:width .3s;width:20%;"></div>
@@ -150,8 +156,8 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
             </div>
         </div>
 
-        <ins class="adsbygoogle" style="display:block;min-height:0;margin:12px 0" data-ad-client="ca-pub-8427583028015858" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        <ins class="adsbygoogle" style="display:block;min-height:90px;margin:12px 0" data-ad-client="ca-pub-8427583028015858" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>try{(adsbygoogle = window.adsbygoogle || []).push({});}catch(e){}</script>
 
         <!-- 使い方セクション -->
         <div class="card" style="margin-top:8px;background:#f8fafc;">
@@ -193,7 +199,7 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
         </div>
 
         <!-- SNSシェアCTA -->
-        <div class="card" style="margin-top:8px;text-align:center;background:linear-gradient(135deg,#FFEDD5,#FFF7ED);" role="complementary" aria-label="SNSシェア">
+        <div class="card" style="margin-top:8px;text-align:center;background:#f0f9ff;" role="complementary" aria-label="SNSシェア">
             <p style="font-size:13px;font-weight:600;color:#374151;margin-bottom:10px;">📣 友人・家族にシェアする</p>
             <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
                 <a href="https://twitter.com/intent/tweet?text=%E5%A7%BF%E5%8B%A2%E3%82%B9%E3%82%B3%E3%82%A2%E8%A8%BA%E6%96%AD%E3%83%84%E3%83%BC%E3%83%AB%20%23無料ツール&url=https%3A%2F%2Fappadaycreator.com%2Fposture-score-checker%2F" target="_blank" rel="noopener" aria-label="姿勢スコア診断ツールをXでシェア" style="background:#1DA1F2;color:white;padding:8px 16px;border-radius:8px;font-size:13px;text-decoration:none;font-weight:600;min-height:44px;display:inline-flex;align-items:center;">𝕏 シェア</a>
@@ -312,62 +318,72 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
       if ((scores.exercise || 0) <= 1) issues.push({ label:'運動習慣あり', tag:'good' });
       if (issues.filter(i => i.tag === 'warn').length === 0) issues.push({ label:'姿勢習慣良好', tag:'good' });
 
-      // 診断タイトル
-      let title, desc;
+      // 診断タイトル・色設定
+      let title, desc, titleColor;
       if (pct >= 80) {
         title = '🌟 姿勢スコア: ' + pct + '点 — 優秀な姿勢タイプ';
         desc = 'とても良い姿勢習慣を持っています！現在の習慣を継続しながら、定期的なストレッチで更に維持しましょう。';
+        titleColor = '#16a34a';
       } else if (pct >= 60) {
         title = '👍 姿勢スコア: ' + pct + '点 — まずまずの姿勢タイプ';
         desc = '姿勢は平均的ですが、いくつか改善できるポイントがあります。日常の小さな意識付けで大きく変わります。';
+        titleColor = '#d97706';
       } else if (pct >= 40) {
         title = '⚠️ 姿勢スコア: ' + pct + '点 — 要改善タイプ';
         desc = '姿勢の乱れが蓄積しやすい生活パターンが見られます。以下のエクサイズを毎日少しずつ取り入れましょう。';
+        titleColor = '#ea580c';
       } else {
         title = '🚨 姿勢スコア: ' + pct + '点 — 姿勢矯正が必要なタイプ';
         desc = '姿勢に関わる複数の習慣に課題があります。放置すると慢性的な痛みに繋がる可能性があります。専門家への相談も検討してみてください。';
+        titleColor = '#dc2626';
       }
 
-      // 改善エクサイズ選定
-      const exercises = [];
-      if ((scores.hunchback || 0) >= 1 || (scores.roundshoulder || 0) >= 1) {
-        exercises.push({
+      // 改善エクサイズ選定（優先度順・精密化版）
+      const candidates = [];
+      const hunchScore = (scores.hunchback || 0) + (scores.roundshoulder || 0);
+      if (hunchScore >= 4) {
+        candidates.push({
+          priority: hunchScore,
           name: '胸ストレッチ（胸郭開き）',
-          desc: '両手を後ろで組み、胸を張るように肩甲骨を寄せて10秒キープ。1日3セット。猫背・巻き肩の改善に効果的。'
+          desc: '両手を後ろで組み、胸を張るように肩甲骨を寄せて10秒キープ。1日3セット、毎日継続を目安に。猫背・巻き肩の改善に効果的。'
         });
       }
-      if ((scores.neckforward || 0) >= 1) {
-        exercises.push({
+      if ((scores.neckforward || 0) >= 2) {
+        candidates.push({
+          priority: (scores.neckforward || 0) * 2,
           name: 'あごひきエクサイズ',
-          desc: '顎を軽く引き、後頭部を壁に近づけるように首を後ろへ。10秒×5回。スマホ首・ストレートネックに効果的。'
+          desc: '顎を軽く引き、後頭部を壁に近づけるように首を後ろへ。10秒×5回、毎日実施を目安に。スマホ首・ストレートネックに効果的。'
         });
       }
-      if ((scores.lordosis || 0) >= 1) {
-        exercises.push({
+      if ((scores.lordosis || 0) >= 2) {
+        candidates.push({
+          priority: (scores.lordosis || 0) * 1.5,
           name: '骨盤後傾エクサイズ',
-          desc: '仰向けで膝を立て、腰を床に押しつけるようにお腹に力を入れて10秒。反り腰・腰痛予防に効果的。'
+          desc: '仰向けで膝を立て、腰を床に押しつけるようにお腹に力を入れて10秒。1日1セット、毎日継続を目安に。反り腰・腰痛予防に効果的。'
         });
       }
-      if ((scores.backpain || 0) >= 1) {
-        exercises.push({
+      if ((scores.backpain || 0) >= 2) {
+        candidates.push({
+          priority: (scores.backpain || 0) * 2,
           name: 'キャット&カウストレッチ',
-          desc: '四つん這いで背中を丸める（キャット）→ 反らす（カウ）を繰り返す。10回×2セット。腰背部のコリ解消に効果的。'
+          desc: '四つん這いで背中を丸める（キャット）→ 反らす（カウ）を繰り返す。10回×2セット、毎日実施を目安に。腰背部のコリ解消に効果的。'
         });
       }
-      if ((scores.toesout || 0) >= 1) {
-        exercises.push({
+      if ((scores.toesout || 0) >= 2) {
+        candidates.push({
+          priority: (scores.toesout || 0),
           name: '内股ストレッチ（股関節ほぐし）',
-          desc: '片足を前に出して膝を立て、反対の膝を地面に。体を前に倒して股関節を10秒伸ばす。外股歩き・骨盤の歪みに効果的。'
+          desc: '片足を前に出して膝を立て、反対の膝を地面に。体を前に倒して股関節を10秒伸ばす。週3回以上を目安に。外股歩き・骨盤の歪みに効果的。'
         });
       }
-      if (exercises.length === 0) {
-        exercises.push({
-          name: '全身ストレッチ（維持用）',
-          desc: '朝起きたときに全身をゆっくり伸ばす5分間ストレッチを習慣にしましょう。良い姿勢を維持するために効果的。'
-        });
-      }
+      candidates.sort((a, b) => b.priority - a.priority);
+      const exercises = candidates.length > 0 ? candidates.slice(0, 5) : [{
+        name: '全身ストレッチ（維持用）',
+        desc: '朝起きたときに全身をゆっくり伸ばす5分間ストレッチを毎日習慣にしましょう。良い姿勢を維持するために効果的。'
+      }];
 
       document.getElementById('r-title').textContent = title;
+      document.getElementById('r-title').style.color = titleColor;
       document.getElementById('r-desc').textContent  = desc;
 
       // タグ描画
@@ -375,13 +391,13 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
         `<span class="tag tag-${i.tag}">${i.label}</span>`).join('');
 
       // スコアリング（SVGゲージ）
-      const r = 50, cx = 60, cy = 60, strokeW = 10;
+      const r = 65, cx = 80, cy = 80, strokeW = 12;
       const circ = 2 * Math.PI * r;
       const dashArr = circ * pct / 100;
       const color = pct >= 80 ? '#16a34a' : pct >= 60 ? '#d97706' : pct >= 40 ? '#ea580c' : '#dc2626';
       document.getElementById('r-score-wrap').innerHTML = `
         <div class="score-ring">
-          <svg viewBox="0 0 120 120" width="120" height="120">
+          <svg viewBox="0 0 160 160" width="160" height="160">
             <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#e5e7eb" stroke-width="${strokeW}"/>
 <meta name="twitter:image" content="https://appadaycreator.com/posture-score-checker/ogp.png" />
 <meta name="twitter:description" content="日常の姿勢習慣から猫背・反り腰などの問題を診断。改善エクサイズも提案。登録不要・完全無料でご利用いただけます。" />
@@ -435,7 +451,7 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
         | <a href="terms.html" style="color:white;">利用規約</a>
         | <a href="contact.html" style="color:white;">お問い合わせ</a></p>
         <p style="margin-top:4px;font-size:11px;opacity:0.6;">最終更新: 2026年5月 | 本サービスはアフィリエイト広告を掲載しています（A8.net/Amazon）</p>
-        <p style="margin-top:6px;">© 2026 AppADayCreator. All services are free.</p>
+        <p style="margin-top:6px;">© 2026 AppADayCreator. All services are free. | <a href="/tb-corp/?utm_source=appadaycreator&utm_medium=footer&utm_campaign=b2b_cta" onclick="gtag('event','b2b_cta_click',{source_page:location.pathname,cta_position:'footer',tool_category:'portal',destination:'tech-and-brace'})" style="color:white;opacity:0.75;font-size:11px;">Web制作・DX相談 → Tech&amp;Brace</a></p>
     </footer>
 </body>
 </html>
