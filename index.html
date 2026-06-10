@@ -12,9 +12,11 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#EA580C" />
     <title>姿勢スコア診断ツール【無料】無料診断・アドバイス</title>
-    <meta name="description" content="日常の姿勢習慣から猫背・反り腰などの問題を診断。改善エクサイズも提案。登録不要・完全無料でご利用いただけます。スマホ・PC対応。登録不要・完全無料。">
+    <meta name="description" content="日常の姿勢習慣から猫背・反り腰などの問題を診断。改善エクサイズも提案。登録不要・完全無料でご利用いただけます。登録不要・完全無料。スマートフォン・PCどちらでも無料でお使いいただけます。">
     <link rel="canonical" href="https://appadaycreator.com/posture-score-checker/">
-    <link rel="manifest" href="/posture-score-checker/manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="/posture-score-checker/manifest.json">
     <meta property="og:title" content="姿勢スコア診断ツール【無料】無料診断・アドバイス">
     <meta property="og:description" content="日常の姿勢習慣から猫背・反り腰などの問題を診断。改善エクサイズも提案。登録不要・完全無料でご利用いただけます。">
     <meta property="og:url" content="https://appadaycreator.com/posture-score-checker/">
@@ -33,6 +35,7 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
     <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
     <link rel="dns-prefetch" href="https://www.clarity.ms">
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <!-- Clarity -->
     <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","s3t9vl8h3v");</script>
     <!-- AdSense -->
@@ -66,18 +69,14 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
             .site-header h1 { font-size: 20px; }
             .site-header p { display: none; }
             .card { padding: 16px; }
-            .btn { font-size: 15px; padding: 13px 20px; min-height: 48px; }
+            .btn { font-size: 15px; padding: 13px 20px; }
             .result-value { font-size: 28px; }
-            #q-text { font-size: 16px !important; }
-            .q-option-btn { min-height: 48px; padding: 14px 12px; font-size: 14px; }
-            .score-ring { width: 160px; height: 160px; margin: 0 auto 16px; }
-            .score-ring .score-num { font-size: 2.5rem; }
         }
         /* ── サービス固有CSS ── */
 
-        .score-ring { position:relative; width:160px; height:160px; margin:0 auto 16px; }
+        .score-ring { position:relative; width:120px; height:120px; margin:0 auto 12px; }
         .score-ring svg { transform:rotate(-90deg); }
-        .score-ring .score-num { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:2.5rem; font-weight:700; }
+        .score-ring .score-num { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:2rem; font-weight:700; }
         .exercise-card { background:#FFF7ED; border:1.5px solid #fed7aa; border-radius:10px; padding:12px 14px; margin-bottom:8px; }
         .exercise-card h4 { font-size:14px; font-weight:700; color:#c2410c; margin-bottom:4px; }
         .exercise-card p { font-size:13px; color:#555; line-height:1.5; margin:0; }
@@ -85,9 +84,23 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
         .tag { border-radius:12px; padding:3px 10px; font-size:12px; }
         .tag-warn { background:#fee2e2; color:#b91c1c; }
         .tag-good { background:#dcfce7; color:#166534; }
-        .q-option-btn { width:100%; padding:12px; margin-bottom:8px; border:2px solid #e5e7eb; border-radius:10px; font-size:14px; cursor:pointer; background:#fff; text-align:left; transition:.2s; }
+        .q-option-btn { width:100%; padding:12px; margin-bottom:8px; border:2px solid #e5e7eb; border-radius:10px; font-size:14px; cursor:pointer; background:#fff; text-align:left; transition:.2s; position:relative; }
         .q-option-btn:hover { border-color:#EA580C; background:#FFF7ED; }
-    
+        .q-option-btn:focus-visible { outline:3px solid #EA580C; outline-offset:2px; }
+        .q-option-btn.selected { background:#EA580C; color:#fff; border-color:#EA580C; font-weight:600; }
+        .q-option-btn.selected::after { content:'✓'; position:absolute; right:12px; top:50%; transform:translateY(-50%); font-weight:700; font-size:16px; }
+        .score-priority { display:inline-block; font-size:11px; font-weight:700; padding:2px 8px; border-radius:12px; margin-right:6px; }
+        .priority-high { background:#fecaca; color:#991b1b; }
+        .priority-medium { background:#fcd34d; color:#854d0e; }
+        .priority-low { background:#d1fae5; color:#065f46; }
+        .exercise-duration { display:block; font-size:12px; color:#7c3aed; font-weight:600; margin-bottom:4px; }
+        .share-buttons { display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }
+        .share-btn { padding:8px 12px; font-size:13px; border:1px solid #e5e7eb; border-radius:6px; cursor:pointer; background:#fff; transition:.2s; }
+        .share-btn:hover { background:#f3f4f6; border-color:#EA580C; }
+        .share-btn:focus-visible { outline:2px solid #EA580C; outline-offset:1px; }
+        @keyframes scoreIn { from { opacity:0; transform:scale(0.8); } to { opacity:1; transform:scale(1); } }
+        .score-num { animation:scoreIn 0.8s ease-out; }
+
 @media print{
   header,footer,nav,button,.no-print,
   [class*="share"],[class*="affiliate"],[id*="share"],
@@ -102,8 +115,6 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
 ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!important;height:0!important}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://appadaycreator.com/"},{"@type":"ListItem","position":2,"name":"健康","item":"https://appadaycreator.com/category/health/"},{"@type":"ListItem","position":3,"name":"姿勢スコア診断ツール無料診断・アドバイス","item":"https://appadaycreator.com/posture-score-checker/"}]}</script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZDPNYD2875"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-ZDPNYD2875',{send_page_view:false});</script>
 </head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TXQGZRF9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -115,10 +126,29 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
         <h1>姿勢スコア診断ツール</h1>
         <p>日常の姿勢習慣から猫背・反り腰などの問題を診断。改善エクサイズも提案。</p>
     </header>
+<div style="background:#4338ca;padding:5px 12px;text-align:right;font-size:.78rem"><a href="/blog/" style="color:#c7d2fe;text-decoration:none;font-weight:600">📖 コラム</a>&nbsp;｜&nbsp;<a href="/" style="color:#c7d2fe;text-decoration:none">ホーム</a></div>
+<!-- r21-breadcrumb -->
+<nav aria-label="パンくずリスト" style="background:#f8fafc;border-bottom:1px solid #e2e8f0;padding:5px 16px;font-size:.78rem;color:#6b7280;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">
+  <a href="/" style="color:#4f46e5;text-decoration:none">ホーム</a>
+  <span style="margin:0 .35rem;color:#9ca3af">›</span>
+  <span style="color:#374151">姿勢スコア診断ツール【無料】無料診断・アドバイス</span>
+</nav>
+
 
     <main id="main-content" class="container" role="main" aria-label="姿勢スコア診断ツールのメインコンテンツ">
+<nav aria-label="パンくずリスト" style="background:#f8fafc;border-bottom:1px solid #e2e8f0;padding:6px 0;">
+  <div class="container mx-auto px-4">
+    <ol style="display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:0.8rem;color:#6b7280;list-style:none;margin:0;padding:0;">
+      <li><a href="https://appadaycreator.com/" style="color:#4b5563;text-decoration:none;" onmouseover="this.style.color='#2563eb'" onmouseout="this.style.color='#4b5563'">ホーム</a></li>
+      <li style="color:#9ca3af;">›</li>
+      <li><a href="https://appadaycreator.com/category/health/" style="color:#4b5563;text-decoration:none;" onmouseover="this.style.color='#2563eb'" onmouseout="this.style.color='#4b5563'">健康・医療</a></li>
+      <li style="color:#9ca3af;">›</li>
+      <li style="color:#1f2937;">姿勢スコア診断ツール無料診断・アドバイス</li>
+    </ol>
+  </div>
+</nav>
         <ins class="adsbygoogle" style="display:block;min-height:90px;margin:12px 0" data-ad-client="ca-pub-8427583028015858" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>try{(adsbygoogle = window.adsbygoogle || []).push({});}catch(e){}</script>
+        <script>try{try{(adsbygoogle = window.adsbygoogle || []).push({});}catch(e){}}catch(e){}</script>
 
         <div class="card" id="quiz-start">
           <h2 style="font-size:18px;font-weight:700;margin-bottom:12px;">🦴 姿勢スコア診断ツール</h2>
@@ -127,7 +157,7 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
         </div>
         <div id="quiz-area" style="display:none;">
           <div style="font-size:12px;color:#999;margin-bottom:8px;">
-            質問 <span id="q-num">1</span> / <span id="q-total">10</span>
+            質問 <span id="q-num">1</span> / <span id="q-total">5</span>
           </div>
           <div id="q-progress" style="height:4px;background:#e5e7eb;border-radius:2px;margin-bottom:16px;">
             <div id="q-bar" style="height:100%;background:#EA580C;border-radius:2px;transition:width .3s;width:20%;"></div>
@@ -141,8 +171,18 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
             <p id="r-desc" style="color:#444;font-size:14px;line-height:1.7;"></p>
             <div id="r-tags" class="tag-list" style="margin-bottom:12px;"></div>
             <div id="r-score-wrap" style="margin-bottom:12px;"></div>
+            <div style="display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;">
+              <button class="btn" style="flex:1;min-width:120px;padding:10px 12px;font-size:14px;margin:0;" onclick="copyResult()">📋 結果をコピー</button>
+              <button class="btn" style="flex:1;min-width:120px;padding:10px 12px;font-size:14px;margin:0;" onclick="downloadCSV()">📥 CSVダウンロード</button>
+              <button class="btn" style="flex:1;min-width:120px;padding:10px 12px;font-size:14px;margin:0;" onclick="window.print()">🖨️ 印刷</button>
+            </div>
             <div id="r-exercises"></div>
-            <button class="btn" style="margin-top:16px;" onclick="location.reload()">もう一度診断</button>
+            <div id="r-graphs" style="margin-top:20px;"></div>
+            <div id="r-history" style="margin-top:20px;"></div>
+            <div style="display:flex;gap:8px;margin-top:16px;flex-direction:column">
+              <button class="btn" style="background:#4f46e5;margin:0;" onclick="startQuiz()">📊 別の条件で比較診断</button>
+              <button class="btn" style="margin:0;opacity:0.7;" onclick="location.reload()">🔄 すべてリセット</button>
+            </div>
           </div>
         </div>
 
@@ -157,7 +197,7 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
         </div>
 
         <ins class="adsbygoogle" style="display:block;min-height:90px;margin:12px 0" data-ad-client="ca-pub-8427583028015858" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>try{(adsbygoogle = window.adsbygoogle || []).push({});}catch(e){}</script>
+        <script>try{try{(adsbygoogle = window.adsbygoogle || []).push({});}catch(e){}}catch(e){}</script>
 
         <!-- 使い方セクション -->
         <div class="card" style="margin-top:8px;background:#f8fafc;">
@@ -211,70 +251,182 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
         <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:12px;margin:8px 0;font-size:12px;color:#92400e;">
             <strong>⚠️ 免責事項</strong>：本ツールの計算・診断結果はあくまで参考情報です。医療・法律・税務・投資等の専門的判断が必要な場合は、必ず資格を持つ専門家にご相談ください。本サービスの利用により生じた損害について、当サービスは一切の責任を負いません。
         </div>
-    </main>
+    
+<section aria-labelledby="faq-h" class="bg-white rounded-2xl shadow-md p-4 mb-4" style="max-width:740px;margin-left:auto;margin-right:auto">
+  
+<div style="background:#f0f7ff;border:1px solid #bfdbfe;border-radius:12px;padding:1.5rem 1.75rem;margin:2rem 0" id="tool-desc-box">
+  <h2 style="font-size:1.05rem;font-weight:800;color:#1e40af;margin:0 0 1rem">📋 このツールの詳細</h2>
+  <p style="color:#374151;margin:0 0 .75rem;line-height:1.8">「姿勢スコア診断ツール」は、あなたの状況に合わせたアドバイスを提供する無料の診断・アドバイスツールです。</p>
+  <p style="color:#374151;margin:0 0 .75rem;line-height:1.8">いくつかの質問に答えるだけで、あなたに最適な提案や判断基準をわかりやすく提示します。</p>
+  <p style="color:#374151;margin:0;line-height:1.8">情報収集や比較検討の時間を大幅に短縮できるので、迷っているときの第一歩として活用いただけます。</p>
+</div>
+<div style="background:#eaf4fb;border-left:4px solid #1976d2;padding:20px 24px;margin:24px 0;border-radius:0 8px 8px 0">
+  <h3 style="font-size:1.1rem;font-weight:800;color:#1e3a5f">このツールでできること</h3>
+  <p style="margin:8px 0 0;line-height:1.7;color:#1a1a2e">正面・側面の立ち姿や座り姿に関する質問に答えると、100点満点で姿勢スコアを算出します。改善が必要な部位ごとの優先度と、具体的なストレッチ・エクササイズを提案します。</p>
+</div>
+<div style="background:#f0fdf4;border-left:4px solid #388e3c;padding:20px 24px;margin:24px 0;border-radius:0 8px 8px 0">
+  <h3 style="font-size:1.1rem;font-weight:800;color:#1b5e20">活用シーン・使い方</h3>
+  <p style="margin:8px 0 0;line-height:1.7;color:#1a1a2e">姿勢の客観的な自己評価や、改善前後の比較記録に活用できます。就活・面接前の立ち居振る舞いチェックや、モデル・ダンサーのフォームセルフチェックにも使えます。</p>
+</div>
+<div style="background:#fff8e1;border-left:4px solid #f57c00;padding:20px 24px;margin:24px 0;border-radius:0 8px 8px 0">
+  <h3 style="font-size:1.1rem;font-weight:800;color:#e65100">注意点・補足</h3>
+  <p style="margin:8px 0 0;line-height:1.7;color:#1a1a2e">スコアはアンケートベースの参考値です。専門的な姿勢評価は理学療法士・整体師による実際の評価が最も正確です。</p>
+</div>
+<!-- r22-editorial -->
+<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:.75rem;padding:1.5rem;margin:1.5rem 0">
+  <h2 style="font-size:1.05rem;font-weight:800;color:#14532d;margin:0 0 1rem;border-left:4px solid #16a34a;padding-left:.75rem">健康管理の基礎知識（厚生労働省データ）</h2>
+  <p style="font-size:.88rem;color:#4b5563;margin:0 0 .75rem">厚生労働省「国民健康栄養調査」などのデータから、日本人の健康状態と予防のポイントを整理しました。</p>
+  <table style="width:100%;border-collapse:collapse;font-size:.83rem">
+    <thead>
+      <tr style="background:#bbf7d0">
+        <th style="padding:.5rem .75rem;text-align:left;border:1px solid #bbf7d0;color:#14532d">項目</th>
+        <th style="padding:.5rem .75rem;text-align:left;border:1px solid #bbf7d0;color:#14532d">データ</th>
+        <th style="padding:.5rem .75rem;text-align:left;border:1px solid #bbf7d0;color:#14532d">出典</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:#f0fdf4">
+        <td style="padding:.5rem .75rem;border:1px solid #bbf7d0;font-weight:600;color:#14532d">成人の肥満割合（BMI25以上）</td>
+        <td style="padding:.5rem .75rem;border:1px solid #bbf7d0"><strong>男性33.0%・女性22.3%（2022年）</strong></td>
+        <td style="padding:.5rem .75rem;border:1px solid #bbf7d0;font-size:.78rem;color:#6b7280">厚生労働省「国民健康栄養調査」2022年</td>
+      </tr>
+      <tr style="">
+        <td style="padding:.5rem .75rem;border:1px solid #bbf7d0;font-weight:600;color:#14532d">1日の歩数の目標</td>
+        <td style="padding:.5rem .75rem;border:1px solid #bbf7d0"><strong>男性8,000歩・女性7,000歩（厚生労働省推奨）</strong></td>
+        <td style="padding:.5rem .75rem;border:1px solid #bbf7d0;font-size:.78rem;color:#6b7280">厚生労働省「健康日本21（第二次）」</td>
+      </tr>
+      <tr style="background:#f0fdf4">
+        <td style="padding:.5rem .75rem;border:1px solid #bbf7d0;font-weight:600;color:#14532d">睡眠時間の目安（成人）</td>
+        <td style="padding:.5rem .75rem;border:1px solid #bbf7d0"><strong>7〜9時間が推奨（6時間未満は健康リスク増）</strong></td>
+        <td style="padding:.5rem .75rem;border:1px solid #bbf7d0;font-size:.78rem;color:#6b7280">WHO・厚生労働省「健康づくりのための睡眠ガイド2023」</td>
+      </tr>
+      <tr style="">
+        <td style="padding:.5rem .75rem;border:1px solid #bbf7d0;font-weight:600;color:#14532d">生活習慣病の主な予防因子</td>
+        <td style="padding:.5rem .75rem;border:1px solid #bbf7d0"><strong>適度な運動・バランスの良い食事・禁煙・適量飲酒</strong></td>
+        <td style="padding:.5rem .75rem;border:1px solid #bbf7d0;font-size:.78rem;color:#6b7280">厚生労働省「生活習慣病予防のための健康情報」</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size:.78rem;color:#6b7280;margin:.5rem 0 0">※ 記載データは各出典の公表時点の情報です。最新情報は各公的機関の公式サイトをご確認ください。</p>
+</div>
+<!-- r20-tool-links -->
+<div id="tool-disclaimer" style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:1.25rem 1.5rem;margin:1.5rem 0;font-size:.875rem">
+  <p style="font-weight:700;color:#374151;margin:0 0 .5rem">⚠️ 計算結果の活用にあたって</p>
+  <p style="color:#4b5563;margin:0 0 .5rem;line-height:1.75">計算結果は参考値です。入力値や前提条件によって結果が変わります。重要な判断の際は最新の公式情報をご確認ください。</p>
+  <ul style="margin:0;padding-left:1.25rem;color:#4b5563;line-height:1.9"><li><a href="https://www.caa.go.jp/" target="_blank" rel="noopener noreferrer" style="color:#4f46e5;font-size:.85rem">消費者庁「くらしの安心ガイド」</a></li></ul>
+</div>
+<h2 id="faq-h" style="font-size:1.05rem;font-weight:700;margin-bottom:12px;border-left:4px solid #4f46e5;padding-left:10px;">よくある質問</h2>
+  <dl style="line-height:1.8;">
+    <dt style="font-weight:600;margin-top:12px;">Q: 診断結果はどう活用すればいいですか？</dt>
+    <dd style="margin-left:16px;color:#374151;">姿勢スコアツール無料・アドバイスに関する判断・選択の参考情報としてご活用ください。条件を変えて複数回試すことで、より広い視点で検討できます。</dd>
+    <dt style="font-weight:600;margin-top:12px;">Q: 診断を繰り返し使えますか？</dt>
+    <dd style="margin-left:16px;color:#374151;">はい、条件を変えて何度でも診断いただけます。異なるシナリオで結果を比較することで、より確かな判断材料になります。</dd>
+    <dt style="font-weight:600;margin-top:12px;">Q: 入力したデータはどこに保存されますか？</dt>
+    <dd style="margin-left:16px;color:#374151;">すべての処理はブラウザ内で完結します。入力データがサーバーに送信されることはなく、プライバシーが守られます。</dd>
+  </dl>
+</section>
+<section style="margin:2rem 0;padding:1.5rem;background:#f8fafc;border-radius:.75rem;border:1px solid #e2e8f0">
+<h2 style="font-size:1.05rem;font-weight:700;color:#1f2937;margin:0 0 .75rem">姿勢スコア診断ツールの活用ガイド</h2>
+<p style="margin:0 0 .75rem;line-height:1.8;color:#374151">「姿勢スコア診断ツール」は、日常の姿勢に関する複数の質問に答えることで、100点満点の姿勢スコアと詳細なフィードバックを提供する診断ツールです。座位・立位・歩行・睡眠それぞれの姿勢習慣を評価し、問題のある姿勢パターンを特定します。スコアに基づいて優先的に取り組むべき改善項目をランキング形式で提示し、継続的な改善をサポートします。</p>
+<h3 style="font-size:.95rem;font-weight:700;color:#1f2937;margin:1rem 0 .5rem">こんな方におすすめ</h3>
+<ul style="margin:0 0 1rem;padding-left:1.4rem;line-height:2;color:#374151">
+<li>自分の姿勢が客観的に何点くらいか数値で知りたい方</li>
+<li>肩こりや腰痛の原因が姿勢にあるのか確認したい方</li>
+<li>健康診断や定期チェックの一環として姿勢を記録・管理したい方</li>
+</ul>
+<h3 style="font-size:.95rem;font-weight:700;color:#1f2937;margin:1rem 0 .5rem">よくある質問</h3>
+<div style="margin-bottom:.75rem"><p style="font-weight:700;color:#111827;margin:0 0 .3rem;font-size:.9rem">Q. 姿勢スコアはどのように計算されますか？</p><p style="color:#374151;margin:0;font-size:.88rem;line-height:1.8">A. 座位・立位・歩行・睡眠の4カテゴリーそれぞれ25点満点で評価し、合計100点満点で算出します。各質問への回答内容に応じて減点方式で採点され、80点以上が良好・60〜79点が要改善・60点未満が要注意の目安です。</p></div>
+<div style="margin-bottom:.75rem"><p style="font-weight:700;color:#111827;margin:0 0 .3rem;font-size:.9rem">Q. スコアを上げるために最初にすべきことは何ですか？</p><p style="color:#374151;margin:0;font-size:.88rem;line-height:1.8">A. 最初にスコアが低いカテゴリーに集中することをおすすめします。多くの方に共通して効果的なのは「デスク環境の見直し」で、モニターの高さとチェアの高さを適切に調整するだけでスコアが大きく改善する場合があります。</p></div>
+<div><p style="font-weight:700;color:#111827;margin:0 0 .3rem;font-size:.9rem">Q. 定期的に診断を受けるべき頻度はどのくらいですか？</p><p style="color:#374151;margin:0;font-size:.88rem;line-height:1.8">A. 改善プログラムを実践している場合は2〜4週間に1回の再診断が目安です。生活習慣の変化（テレワーク開始・引越し・仕事内容の変化）があった際にもチェックすることで、早期に悪化を発見できます。</p></div>
+</section>
+</main>
 
     
 <script>
     const BTN_COLOR = '#EA580C';
-    // 質問データ（各質問にoptions配列とscoreキーを持たせる）
     const QUESTIONS = [
       {
         text: '1. 座っているとき、背中が丸まっていることが多いですか？',
+        desc: '背中全体が丸い状態（猫背）で、肩が前に出ていないか確認してください。猫背は首・肩・腰に大きな負担をかけます。',
         options: ['ほとんどない', 'たまにある', 'よくある', 'ほぼいつも'],
         key: 'hunchback'
       },
       {
         text: '2. スマホを見るとき、首が前に大きく倒れていますか？',
+        desc: '首が前に出ると、わずかな角度でも首・肩に大きな負担がかかります。鏡で側面の姿勢を確認してみましょう。',
         options: ['ほとんどない', 'たまにある', 'よくある', 'ほぼいつも'],
         key: 'neckforward'
       },
       {
         text: '3. 長時間座ると、腰や背中が痛くなりますか？',
+        desc: '座位で長時間の痛みは、椅子の高さ・背もたれ・デスク配置が原因の場合が多いです。',
         options: ['ほとんどない', 'たまにある', 'よくある', 'ほぼいつも'],
         key: 'backpain'
       },
       {
         text: '4. 立ったとき、お腹が前に出て腰が反り気味ですか？',
+        desc: '腰が反っている（反り腰）と、腰部に過度な負担がかかります。脇を見たときに腰部に溝が深くないか確認してください。',
         options: ['ほとんどない', 'たまにある', 'よくある', 'ほぼいつも'],
         key: 'lordosis'
       },
       {
         text: '5. 肩が前に巻き込んでいる（巻き肩）と感じますか？',
+        desc: '両腕を自然に垂らしたとき、手のひらが後ろを向いているか確認してください。前を向いていれば巻き肩の可能性があります。',
         options: ['ほとんどない', 'たまにある', 'よくある', 'ほぼいつも'],
         key: 'roundshoulder'
       },
       {
         text: '6. デスクワーク・スマホ使用は1日何時間ですか？',
+        desc: '長時間の同じ姿勢は、首・肩・腰に蓄積的な負担をかけます。実際の使用時間を概算で選択してください。',
         options: ['2時間未満', '2〜4時間', '4〜6時間', '6時間以上'],
         key: 'desktime'
       },
       {
         text: '7. 週に1回以上、意識してストレッチや運動をしていますか？',
+        desc: '運動習慣は姿勢改善の最重要因です。軽いストレッチでも毎日の積み重ねが効果的です。',
         options: ['週3回以上', '週1〜2回', '月数回', 'ほとんどしない'],
         key: 'exercise'
       },
       {
         text: '8. 歩くとき、つま先が外側を向きやすいですか（外股歩き）？',
+        desc: 'つま先が外側を向く歩き方は、膝・腰・股関節に負担をかけます。鏡で歩く姿勢を確認してみましょう。',
         options: ['ほとんどない', 'たまにある', 'よくある', 'ほぼいつも'],
         key: 'toesout'
       },
       {
         text: '9. 足を組む・頬杖をつく癖がありますか？',
+        desc: '無意識の習慣（足を組む・頬杖・腰掛け方）が姿勢の乱れを加速させます。日常で意識できるかチェック。',
         options: ['ほとんどない', 'たまにある', 'よくある', 'ほぼいつも'],
         key: 'badhabit'
       },
       {
         text: '10. 枕の高さや寝姿勢について意識していますか？',
+        desc: '寝ている間の姿勢も姿勢習慣に大きく影響します。起床時に首・肩が痛くないか確認してみましょう。',
         options: ['よく意識している', 'たまに意識する', 'あまり意識しない', 'まったく意識しない'],
         key: 'sleep'
       },
     ];
     const scores = {};
     let currentQ = 0;
+    let currentResult = null;
+
+    // アフィリエイト商品データセット（スコアに基づいた推薦）
+    const affiliateProducts = [
+      { score: [0, 50], name: 'ヨガスタジオLAVA', url: 'https://px.a8.net/svt/ejp?a8mat=4B3WJ7+18PTPM+1O96+699KI', desc: '身体改善のプロに相談してみませんか？' },
+      { score: [41, 100], name: 'RIZAP GOLF', url: 'https://px.a8.net/svt/ejp?a8mat=4B3WJ7+5UTRHM+CW6+BF23HE', desc: 'フォーム改善のプロフェッショナル' },
+      { score: [0, 100], name: 'ハピタス', url: 'https://px.a8.net/svt/ejp?a8mat=4B3WJ6+FQ9JMY+1LP8+BY642', desc: 'ポイント還元で節約生活をサポート' }
+    ];
 
     document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('q-total').textContent = QUESTIONS.length;
     });
+
+    function getAffiliateRecommendations(score) {
+      return affiliateProducts
+        .filter(p => score >= p.score[0] && score <= p.score[1])
+        .slice(0, 2)
+        .map(p => ({ name: p.name, url: p.url, desc: p.desc }));
+    }
 
     function startQuiz() {
       currentQ = 0; Object.keys(scores).forEach(k => delete scores[k]);
@@ -288,27 +440,211 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
       const q = QUESTIONS[currentQ];
       document.getElementById('q-num').textContent = currentQ + 1;
       document.getElementById('q-bar').style.width = ((currentQ + 1) / QUESTIONS.length * 100) + '%';
-      document.getElementById('q-text').textContent = q.text;
+      document.getElementById('q-text').innerHTML = `${q.text} <button class="tooltip-btn" type="button" aria-label="質問の説明" title="${q.desc}" onclick="showTooltip(event, '${q.desc.replace(/'/g, '\\\'')}')" style="background:none;border:none;color:#EA580C;font-size:16px;font-weight:700;cursor:pointer;margin-left:6px;padding:0;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;">?</button>`;
       document.getElementById('q-options').innerHTML = q.options.map((opt, i) =>
         `<button class="q-option-btn" onclick="answer(${i})">${opt}</button>`).join('');
     }
 
+    function showTooltip(event, desc) {
+      event.preventDefault();
+      const existing = document.getElementById('tooltip-popup');
+      if (existing) existing.remove();
+
+      const tooltip = document.createElement('div');
+      tooltip.id = 'tooltip-popup';
+      tooltip.style.cssText = 'position:fixed;background:#FFF7ED;border:1.5px solid #fed7aa;border-radius:10px;padding:12px;font-size:13px;color:#333;max-width:280px;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,0.15);';
+      tooltip.textContent = desc;
+
+      document.body.appendChild(tooltip);
+
+      const btn = event.target;
+      const rect = btn.getBoundingClientRect();
+      tooltip.style.top = (rect.bottom + 8) + 'px';
+      tooltip.style.left = (rect.left - 140 + rect.width / 2) + 'px';
+
+      setTimeout(() => tooltip.remove(), 5000);
+    }
+
     function answer(idx) {
       scores[QUESTIONS[currentQ].key] = (scores[QUESTIONS[currentQ].key] || 0) + idx;
-      currentQ++;
-      if (currentQ >= QUESTIONS.length) { showResult(); return; }
-      renderQuestion();
+      const btns = document.querySelectorAll('.q-option-btn');
+      btns.forEach(b => b.classList.remove('selected'));
+      btns[idx].classList.add('selected');
+      setTimeout(() => {
+        currentQ++;
+        if (currentQ >= QUESTIONS.length) { showResult(); return; }
+        renderQuestion();
+      }, 300);
+    }
+
+    function saveToStorage(result) {
+      try {
+        const history = JSON.parse(localStorage.getItem('posture_history') || '[]');
+        history.unshift(result);
+        if (history.length > 10) history.pop();
+        localStorage.setItem('posture_history', JSON.stringify(history));
+      } catch(e) {}
+    }
+
+    function getHistory() {
+      try {
+        return JSON.parse(localStorage.getItem('posture_history') || '[]');
+      } catch(e) { return []; }
+    }
+
+    function copyResult() {
+      const text = `姿勢スコア診断結果\n\n${currentResult.title}\n\n${currentResult.desc}\n\n診断日時: ${new Date().toLocaleString('ja-JP')}\n\nおすすめエクサイズ:\n${currentResult.exercises.map(e => `- ${e.name}: ${e.desc}`).join('\n')}\n\n詳細: https://appadaycreator.com/posture-score-checker/`;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('結果をコピーしました！');
+      }).catch(() => {
+        alert('コピーに失敗しました');
+      });
+    }
+
+    function downloadCSV() {
+      const history = getHistory();
+      let csv = 'スコア,診断タイプ,日時\n';
+      history.forEach(r => {
+        csv += `"${r.score}","${r.type}","${r.date}"\n`;
+      });
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `posture-history-${new Date().getTime()}.csv`;
+      link.click();
+    }
+
+    function renderGraphs(result, history) {
+      let html = '<div style="font-weight:700;font-size:16px;color:#EA580C;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #fed7aa;">📊 スコア分析</div>';
+
+      if (history.length > 1) {
+        html += '<div style="margin-bottom:16px;"><div style="font-size:13px;font-weight:600;color:#555;margin-bottom:8px;text-align:center;">📈 スコア推移（過去5回）</div><canvas id="scoreChart" width="400" height="160" style="max-width:100%;"></canvas></div>';
+      }
+
+      html += '<div><div style="font-size:13px;font-weight:600;color:#555;margin-bottom:8px;text-align:center;">📊 カテゴリ別スコア</div><canvas id="categoryChart" width="400" height="160" style="max-width:100%;"></canvas></div>';
+
+      document.getElementById('r-graphs').innerHTML = html;
+
+      setTimeout(() => {
+        if (history.length > 1) renderScoreChart(history);
+        renderCategoryChart(result);
+      }, 100);
+    }
+
+    function renderScoreChart(history) {
+      const recent = history.slice(0, 5).reverse();
+      const ctx = document.getElementById('scoreChart');
+      if (!ctx) return;
+
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: recent.map((_,i) => `${i+1}回前`).reverse(),
+          datasets: [{
+            label: 'スコア推移',
+            data: recent.map(r => r.score),
+            borderColor: '#EA580C',
+            backgroundColor: '#EA580C22',
+            borderWidth: 2,
+            fill: true,
+            tension: 0.4,
+            pointBackgroundColor: '#EA580C',
+            pointBorderColor: '#fff',
+            pointBorderWidth: 2,
+            pointRadius: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#1f2937',
+              padding: 10,
+              cornerRadius: 8,
+              titleFont: { size: 13, weight: 'bold' },
+              bodyFont: { size: 12 },
+              callbacks: { afterLabel: function() { return '点'; } }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              grid: { color: '#f0f0f0', drawBorder: false },
+              ticks: { color: '#999', font: { size: 12 } }
+            },
+            x: {
+              grid: { display: false },
+              ticks: { color: '#999', font: { size: 12 } }
+            }
+          }
+        }
+      });
+    }
+
+    function renderCategoryChart(result) {
+      const ctx = document.getElementById('categoryChart');
+      if (!ctx) return;
+
+      const categories = [
+        { label: '座位', score: 25 - Math.min(25, (scores.hunchback || 0) * 5 + (scores.backpain || 0) * 5) },
+        { label: '立位', score: 25 - Math.min(25, (scores.lordosis || 0) * 5 + (scores.roundshoulder || 0) * 5) },
+        { label: '首・肩', score: 25 - Math.min(25, (scores.neckforward || 0) * 5) },
+        { label: 'その他', score: 25 - Math.min(25, (scores.toesout || 0) * 5 + (scores.badhabit || 0) * 5) }
+      ];
+
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: categories.map(c => c.label),
+          datasets: [{
+            label: 'カテゴリ別スコア',
+            data: categories.map(c => Math.max(0, c.score)),
+            backgroundColor: ['#16a34a', '#d97706', '#ea580c', '#3b82f6'],
+            borderRadius: 6,
+            borderSkipped: false
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#1f2937',
+              padding: 10,
+              cornerRadius: 8,
+              titleFont: { size: 13, weight: 'bold' },
+              bodyFont: { size: 12 },
+              callbacks: { label: function(ctx) { return ctx.parsed.x + '点'; } }
+            }
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
+              max: 25,
+              grid: { color: '#f0f0f0', drawBorder: false },
+              ticks: { color: '#999', font: { size: 11 } }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: '#555', font: { size: 12, weight: '600' } }
+            }
+          }
+        }
+      });
     }
 
     function showResult() {
       document.getElementById('quiz-area').style.display = 'none';
 
-      // スコア集計（0=良好, 3=最悪 の合計）
       const rawScore = Object.values(scores).reduce((s, v) => s + v, 0);
       const maxScore = QUESTIONS.length * 3;
-      const pct = Math.round((1 - rawScore / maxScore) * 100); // 高いほど良い
+      const pct = Math.round((1 - rawScore / maxScore) * 100);
 
-      // 問題カテゴリを特定
       const issues = [];
       if ((scores.hunchback || 0) >= 2) issues.push({ label:'猫背', tag:'warn' });
       if ((scores.neckforward || 0) >= 2) issues.push({ label:'スマホ首', tag:'warn' });
@@ -318,89 +654,79 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
       if ((scores.exercise || 0) <= 1) issues.push({ label:'運動習慣あり', tag:'good' });
       if (issues.filter(i => i.tag === 'warn').length === 0) issues.push({ label:'姿勢習慣良好', tag:'good' });
 
-      // 診断タイトル・色設定
-      let title, desc, titleColor;
+      let title, desc, type;
       if (pct >= 80) {
         title = '🌟 姿勢スコア: ' + pct + '点 — 優秀な姿勢タイプ';
         desc = 'とても良い姿勢習慣を持っています！現在の習慣を継続しながら、定期的なストレッチで更に維持しましょう。';
-        titleColor = '#16a34a';
+        type = '優秀な姿勢タイプ';
       } else if (pct >= 60) {
         title = '👍 姿勢スコア: ' + pct + '点 — まずまずの姿勢タイプ';
         desc = '姿勢は平均的ですが、いくつか改善できるポイントがあります。日常の小さな意識付けで大きく変わります。';
-        titleColor = '#d97706';
+        type = 'まずまずの姿勢タイプ';
       } else if (pct >= 40) {
         title = '⚠️ 姿勢スコア: ' + pct + '点 — 要改善タイプ';
         desc = '姿勢の乱れが蓄積しやすい生活パターンが見られます。以下のエクサイズを毎日少しずつ取り入れましょう。';
-        titleColor = '#ea580c';
+        type = '要改善タイプ';
       } else {
         title = '🚨 姿勢スコア: ' + pct + '点 — 姿勢矯正が必要なタイプ';
         desc = '姿勢に関わる複数の習慣に課題があります。放置すると慢性的な痛みに繋がる可能性があります。専門家への相談も検討してみてください。';
-        titleColor = '#dc2626';
+        type = '姿勢矯正が必要なタイプ';
       }
 
-      // 改善エクサイズ選定（優先度順・精密化版）
-      const candidates = [];
-      const hunchScore = (scores.hunchback || 0) + (scores.roundshoulder || 0);
-      if (hunchScore >= 4) {
-        candidates.push({
-          priority: hunchScore,
+      const exercises = [];
+      if ((scores.hunchback || 0) >= 1 || (scores.roundshoulder || 0) >= 1) {
+        exercises.push({
           name: '胸ストレッチ（胸郭開き）',
-          desc: '両手を後ろで組み、胸を張るように肩甲骨を寄せて10秒キープ。1日3セット、毎日継続を目安に。猫背・巻き肩の改善に効果的。'
+          desc: '両手を後ろで組み、胸を張るように肩甲骨を寄せて10秒キープ。1日3セット。猫背・巻き肩の改善に効果的。'
         });
       }
-      if ((scores.neckforward || 0) >= 2) {
-        candidates.push({
-          priority: (scores.neckforward || 0) * 2,
+      if ((scores.neckforward || 0) >= 1) {
+        exercises.push({
           name: 'あごひきエクサイズ',
-          desc: '顎を軽く引き、後頭部を壁に近づけるように首を後ろへ。10秒×5回、毎日実施を目安に。スマホ首・ストレートネックに効果的。'
+          desc: '顎を軽く引き、後頭部を壁に近づけるように首を後ろへ。10秒×5回。スマホ首・ストレートネックに効果的。'
         });
       }
-      if ((scores.lordosis || 0) >= 2) {
-        candidates.push({
-          priority: (scores.lordosis || 0) * 1.5,
+      if ((scores.lordosis || 0) >= 1) {
+        exercises.push({
           name: '骨盤後傾エクサイズ',
-          desc: '仰向けで膝を立て、腰を床に押しつけるようにお腹に力を入れて10秒。1日1セット、毎日継続を目安に。反り腰・腰痛予防に効果的。'
+          desc: '仰向けで膝を立て、腰を床に押しつけるようにお腹に力を入れて10秒。反り腰・腰痛予防に効果的。'
         });
       }
-      if ((scores.backpain || 0) >= 2) {
-        candidates.push({
-          priority: (scores.backpain || 0) * 2,
+      if ((scores.backpain || 0) >= 1) {
+        exercises.push({
           name: 'キャット&カウストレッチ',
-          desc: '四つん這いで背中を丸める（キャット）→ 反らす（カウ）を繰り返す。10回×2セット、毎日実施を目安に。腰背部のコリ解消に効果的。'
+          desc: '四つん這いで背中を丸める（キャット）→ 反らす（カウ）を繰り返す。10回×2セット。腰背部のコリ解消に効果的。'
         });
       }
-      if ((scores.toesout || 0) >= 2) {
-        candidates.push({
-          priority: (scores.toesout || 0),
+      if ((scores.toesout || 0) >= 1) {
+        exercises.push({
           name: '内股ストレッチ（股関節ほぐし）',
-          desc: '片足を前に出して膝を立て、反対の膝を地面に。体を前に倒して股関節を10秒伸ばす。週3回以上を目安に。外股歩き・骨盤の歪みに効果的。'
+          desc: '片足を前に出して膝を立て、反対の膝を地面に。体を前に倒して股関節を10秒伸ばす。外股歩き・骨盤の歪みに効果的。'
         });
       }
-      candidates.sort((a, b) => b.priority - a.priority);
-      const exercises = candidates.length > 0 ? candidates.slice(0, 5) : [{
-        name: '全身ストレッチ（維持用）',
-        desc: '朝起きたときに全身をゆっくり伸ばす5分間ストレッチを毎日習慣にしましょう。良い姿勢を維持するために効果的。'
-      }];
+      if (exercises.length === 0) {
+        exercises.push({
+          name: '全身ストレッチ（維持用）',
+          desc: '朝起きたときに全身をゆっくり伸ばす5分間ストレッチを習慣にしましょう。良い姿勢を維持するために効果的。'
+        });
+      }
+
+      currentResult = { title, desc, score: pct, type, exercises, date: new Date().toLocaleString('ja-JP') };
+      saveToStorage(currentResult);
 
       document.getElementById('r-title').textContent = title;
-      document.getElementById('r-title').style.color = titleColor;
-      document.getElementById('r-desc').textContent  = desc;
-
-      // タグ描画
+      document.getElementById('r-desc').textContent = desc;
       document.getElementById('r-tags').innerHTML = issues.map(i =>
         `<span class="tag tag-${i.tag}">${i.label}</span>`).join('');
 
-      // スコアリング（SVGゲージ）
-      const r = 65, cx = 80, cy = 80, strokeW = 12;
+      const r = 50, cx = 60, cy = 60, strokeW = 10;
       const circ = 2 * Math.PI * r;
       const dashArr = circ * pct / 100;
       const color = pct >= 80 ? '#16a34a' : pct >= 60 ? '#d97706' : pct >= 40 ? '#ea580c' : '#dc2626';
       document.getElementById('r-score-wrap').innerHTML = `
         <div class="score-ring">
-          <svg viewBox="0 0 160 160" width="160" height="160">
+          <svg viewBox="0 0 120 120" width="120" height="120">
             <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#e5e7eb" stroke-width="${strokeW}"/>
-<meta name="twitter:image" content="https://appadaycreator.com/posture-score-checker/ogp.png" />
-<meta name="twitter:description" content="日常の姿勢習慣から猫背・反り腰などの問題を診断。改善エクサイズも提案。登録不要・完全無料でご利用いただけます。" />
             <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${color}" stroke-width="${strokeW}"
               stroke-dasharray="${dashArr.toFixed(1)} ${circ.toFixed(1)}" stroke-linecap="round"/>
           </svg>
@@ -408,10 +734,56 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
         </div>
         <p style="text-align:center;font-size:12px;color:#888;margin-top:4px;">姿勢スコア（100点満点）</p>`;
 
-      // エクサイズ描画
+      // アフィリエイトCTA を結果表示後に追加
+      const recommendations = getAffiliateRecommendations(pct);
+      if (recommendations.length > 0) {
+        const affiliateCta = `
+          <div style="background:#FFF7ED;border:1.5px solid #fed7aa;border-radius:10px;padding:14px;margin-top:16px;">
+            <p style="font-size:13px;font-weight:600;color:#EA580C;margin:0 0 10px;text-align:center;">💡 あなたのスコアに合わせたおすすめサービス</p>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              ${recommendations.map(r => `
+                <a href="${r.url}" target="_blank" rel="nofollow noopener noreferrer" style="display:block;background:#EA580C;color:white;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:600;text-align:center;text-decoration:none;transition:opacity 0.2s;"><span style="display:block;font-size:12px;opacity:0.9;">${r.desc}</span><strong>${r.name}</strong></a>
+              `).join('')}
+            </div>
+          </div>`;
+        document.getElementById('r-score-wrap').innerHTML += affiliateCta;
+      }
+
       document.getElementById('r-exercises').innerHTML =
         `<div style="font-weight:700;font-size:14px;color:#EA580C;margin-bottom:8px;">🏋️ おすすめ改善エクサイズ</div>` +
         exercises.map(e => `<div class="exercise-card"><h4>${e.name}</h4><p>${e.desc}</p></div>`).join('');
+
+      const history = getHistory();
+
+      // 前回比較セクションを追加（2回目以降の診断）
+      if (history.length > 1) {
+        const prevScore = history[1].score;
+        const diff = pct - prevScore;
+        const diffSign = diff > 0 ? '↑ ' : diff < 0 ? '↓ ' : '→ ';
+        const diffColor = diff > 0 ? '#16a34a' : diff < 0 ? '#dc2626' : '#888';
+        const diffHtml = `
+          <div style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:10px;padding:14px;margin-top:14px;">
+            <p style="font-weight:700;font-size:13px;color:#374151;margin:0 0 8px;">📈 前回比較</p>
+            <div style="display:flex;align-items:center;gap:12px;font-size:14px;">
+              <div style="flex:1;text-align:center;">
+                <p style="color:#888;font-size:12px;margin:0 0 4px;">前回スコア</p>
+                <p style="font-weight:700;font-size:18px;color:#666;margin:0;">${prevScore}点</p>
+              </div>
+              <div style="color:#ccc;">→</div>
+              <div style="flex:1;text-align:center;">
+                <p style="color:#888;font-size:12px;margin:0 0 4px;">今回スコア</p>
+                <p style="font-weight:700;font-size:18px;color:#EA580C;margin:0;">${pct}点</p>
+              </div>
+              <div style="flex:1;text-align:center;">
+                <p style="color:#888;font-size:12px;margin:0 0 4px;">変化</p>
+                <p style="font-weight:700;font-size:18px;color:${diffColor};margin:0;">${diffSign}${Math.abs(diff)}点</p>
+              </div>
+            </div>
+          </div>`;
+        document.getElementById('r-score-wrap').innerHTML += diffHtml;
+      }
+
+      renderGraphs(currentResult, history);
 
       document.getElementById('result').classList.add('show');
     }
@@ -423,7 +795,123 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
       <a href="https://www.amazon.co.jp/s?k=姿勢スコア+本+おすすめ&tag=appadaycrea0f-22" target="_blank" rel="noopener noreferrer" class="js-track-affiliate" data-platform="Amazon" data-item-name="姿勢スコア 関連書籍" data-link-type="affiliate_link" style="display:inline-block;background:#ff9900;color:#fff;padding:9px 20px;border-radius:8px;font-size:0.85em;font-weight:bold;text-decoration:none;margin:4px;">🛒 姿勢スコア 関連書籍</a>
       <a href="https://www.amazon.co.jp/s?k=姿勢スコア+入門+書籍&tag=appadaycrea0f-22" target="_blank" rel="noopener noreferrer" class="js-track-affiliate" data-platform="Amazon" data-item-name="姿勢スコア 入門ガイド" data-link-type="affiliate_link" style="display:inline-block;background:#ff9900;color:#fff;padding:9px 20px;border-radius:8px;font-size:0.85em;font-weight:bold;text-decoration:none;margin:4px;">🛒 姿勢スコア 入門ガイド</a>
     </div>
-    <!-- rakuten-affiliate-block -->
+    <!-- r31-use-cases -->
+<div style="margin:1.5rem auto;max-width:760px;padding:0 1rem">
+<h2 style="font-size:1.125rem;font-weight:700;margin:0 0 1rem;color:#1e293b;border-left:4px solid #4f46e5;padding-left:10px">こんな方・シーンで役立ちます</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.75rem">
+<div style="padding:1rem;background:#f8fafc;border:1px solid #e2e8f0;border-radius:.75rem">
+<div style="font-size:1.5rem;margin-bottom:.4rem">💪</div>
+<div style="font-weight:700;font-size:.9rem;color:#1e293b;margin-bottom:.4rem">健康管理・記録を始めたい方</div>
+<div style="font-size:.85rem;color:#64748b;line-height:1.7">体重・血圧・睡眠時間など日々のバイタルを記録して変化を把握したい方に。グラフで可視化することで生活改善のきっかけが見つかります。</div>
+</div>
+<div style="padding:1rem;background:#f8fafc;border:1px solid #e2e8f0;border-radius:.75rem">
+<div style="font-size:1.5rem;margin-bottom:.4rem">🏃</div>
+<div style="font-weight:700;font-size:.9rem;color:#1e293b;margin-bottom:.4rem">ダイエット・運動習慣をつけたい方</div>
+<div style="font-size:.85rem;color:#64748b;line-height:1.7">目標体重・消費カロリー・必要な運動量を計算して、無理なく継続できる計画を立てたい方に。科学的根拠に基づいた数値で効率よくダイエットできます。</div>
+</div>
+<div style="padding:1rem;background:#f8fafc;border:1px solid #e2e8f0;border-radius:.75rem">
+<div style="font-size:1.5rem;margin-bottom:.4rem">👩‍⚕️</div>
+<div style="font-weight:700;font-size:.9rem;color:#1e293b;margin-bottom:.4rem">生活習慣病が気になる方</div>
+<div style="font-size:.85rem;color:#64748b;line-height:1.7">医師から生活改善のアドバイスを受けて、自己管理の指標として活用したい方に。血圧・血糖値・BMIの適正範囲を確認できます。</div>
+</div>
+<div style="padding:1rem;background:#f8fafc;border:1px solid #e2e8f0;border-radius:.75rem">
+<div style="font-size:1.5rem;margin-bottom:.4rem">👴</div>
+<div style="font-weight:700;font-size:.9rem;color:#1e293b;margin-bottom:.4rem">シニア・中高年の健康維持</div>
+<div style="font-size:.85rem;color:#64748b;line-height:1.7">年齢に合った適切な運動量・栄養摂取量の目安を知って、元気に過ごしたい中高年の方に。体力の変化に合わせた健康管理ができます。</div>
+</div>
+</div>
+</div>
+<!-- r31-extended-faq -->
+<div style="margin:1.5rem auto;max-width:760px;padding:0 1rem">
+<div style="background:white;border-radius:16px;padding:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.08)">
+<h2 style="font-size:1.05rem;font-weight:700;margin:0 0 1rem;border-left:4px solid #4f46e5;padding-left:10px;color:#1e293b">よくある質問（詳細）</h2>
+<div style="margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid #f1f5f9">
+<p style="font-size:.9rem;font-weight:700;color:#1e293b;margin:0 0 .5rem">Q: BMIの計算結果は本当に健康の指標になりますか？</p>
+<p style="font-size:.85rem;color:#475569;line-height:1.8;margin:0">A: BMI（体格指数）は身長と体重の比率で算出される一般的な指標ですが、筋肉量・骨格・年齢などを反映しないため、あくまで目安の一つです。日本肥満学会ではBMI 18.5〜24.9を標準範囲としていますが、体脂肪率や内臓脂肪も合わせて評価することが重要です。</p>
+</div>
+<div style="margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid #f1f5f9">
+<p style="font-size:.9rem;font-weight:700;color:#1e293b;margin:0 0 .5rem">Q: カロリー計算で体重管理はできますか？</p>
+<p style="font-size:.85rem;color:#475569;line-height:1.8;margin:0">A: 消費カロリーと摂取カロリーのバランスが体重変化の基本です。一般的に7,200kcalのカロリー不足で体脂肪が約1kg減るとされています。ただし栄養バランス（PFCバランス）も重要で、極端な制限は体に負担をかけます。医師・栄養士の指導のもとで無理のない計画を立てることをお勧めします。</p>
+</div>
+<div style="margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid #f1f5f9">
+<p style="font-size:.9rem;font-weight:700;color:#1e293b;margin:0 0 .5rem">Q: 睡眠時間はどのくらいが理想ですか？</p>
+<p style="font-size:.85rem;color:#475569;line-height:1.8;margin:0">A: 国立睡眠財団の推奨によると、成人（26〜64歳）は7〜9時間が理想的とされています。ただし必要な睡眠時間は個人差があります。日中の眠気・集中力・体調を参考に、自分に合った睡眠時間を見つけることが大切です。</p>
+</div>
+<div style="margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid #f1f5f9">
+<p style="font-size:.9rem;font-weight:700;color:#1e293b;margin:0 0 .5rem">Q: 花粉症・アレルギーの症状チェックとして使えますか？</p>
+<p style="font-size:.85rem;color:#475569;line-height:1.8;margin:0">A: 本ツールで症状の傾向を把握することはできますが、アレルギー検査（血液検査・皮膚テスト）による正確な診断は医療機関で行う必要があります。症状が重い場合や市販薬で改善しない場合は耳鼻科・アレルギー科を受診してください。</p>
+</div>
+
+</div>
+</div>
+<!-- r31-tool-notice -->
+<div style="margin:1.5rem auto;max-width:760px;padding:0 1rem">
+<div style="padding:1.25rem 1.5rem;background:#fef3c7;border:1px solid #fbbf24;border-radius:.75rem">
+<h3 style="font-size:1rem;font-weight:700;margin:0 0 .75rem;color:#92400e">⚠️ ご利用時の注意事項</h3>
+<ul style="margin:0;padding-left:1.25rem;font-size:.88rem;color:#78350f;line-height:2">
+<li style='margin-bottom:.4rem'>本ツールの結果はあくまで参考情報です。医療的な診断・治療の代替にはなりません</li>
+<li style='margin-bottom:.4rem'>体調不良・症状が気になる場合は必ず医療機関（内科・専門科）を受診してください</li>
+<li style='margin-bottom:.4rem'>計算値（BMI・カロリー等）は個人差があるため、実際の状況とは異なる場合があります</li>
+<li style='margin-bottom:.4rem'>妊娠中・授乳中の方や持病がある方は、新しい健康法を始める前に必ず医師にご相談ください</li>
+<li style='margin-bottom:.4rem'>医薬品・サプリメントの使用については必ず医師・薬剤師の指示に従ってください</li>
+</ul>
+</div>
+</div>
+<!-- r31-tool-references -->
+<div style="margin:1.5rem auto;max-width:760px;padding:0 1rem">
+<div style="padding:1.25rem 1.5rem;background:#f8fafc;border:1px solid #e2e8f0;border-radius:.75rem">
+<h3 style="font-size:1rem;font-weight:700;margin:0 0 .75rem;color:#1e293b">📚 関連する公的情報・参考リンク</h3>
+<ul style="margin:0;padding-left:1.25rem;font-size:.88rem;color:#374151;line-height:1.9">
+<li style='margin-bottom:.5rem'><a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/eiyou/" target="_blank" rel="noopener noreferrer" style="color:#4f46e5">厚生労働省 日本人の食事摂取基準</a> — 年齢・性別・活動量に応じた栄養摂取量の公的基準</li>
+<li style='margin-bottom:.5rem'><a href="https://www.nibiohn.go.jp/eiken/kenkounippon21/" target="_blank" rel="noopener noreferrer" style="color:#4f46e5">健康日本21（第三次）</a> — 国民の健康増進・生活習慣病予防の指針</li>
+<li style='margin-bottom:.5rem'><a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/sports/index.html" target="_blank" rel="noopener noreferrer" style="color:#4f46e5">厚生労働省 身体活動・運動</a> — 健康を維持するための適切な運動量の目安</li>
+<li style='margin-bottom:.5rem'><a href="https://www.jma.or.jp/" target="_blank" rel="noopener noreferrer" style="color:#4f46e5">日本医師会 健康情報</a> — 医療・健康に関する正確な情報提供</li>
+</ul>
+</div>
+</div>
+<!-- r31-tool-about -->
+<div style="margin:1.5rem auto;max-width:760px;padding:0 1rem">
+<div style="padding:1.25rem 1.5rem;background:#f0f9ff;border:1px solid #bae6fd;border-radius:.75rem">
+<h3 style="font-size:1rem;font-weight:700;margin:0 0 .75rem;color:#0c4a6e">ℹ️ このツールについて</h3>
+<p style="margin:0;font-size:.88rem;color:#0c4a6e;line-height:1.9">「姿勢スコア診断ツール」はAppADayCreatorが提供する無料Webツールです。健康・医療に関する情報を素早く手軽に確認できます。会員登録・アプリインストール不要で、ブラウザからすぐにご利用いただけます。すべての処理はブラウザ内で完結するため、入力した情報が外部サーバーに送信されることはなく、プライバシーも保護されます。スマートフォン・タブレット・PCのすべてに対応したレスポンシブデザインを採用し、外出先や通勤中でも快適にご利用いただけます。AppADayCreatorでは、日常生活のあらゆるシーンで役立つWebツールを400本以上無料で提供しています。金融・健康・育児・キャリア・旅行など幅広いカテゴリのツールをご活用ください。</p>
+</div>
+</div>
+<!-- r31-extra-guide -->
+<div style="margin:1.5rem auto;max-width:760px;padding:0 1rem">
+<div style="background:white;border-radius:16px;padding:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.06)">
+<h2 style="font-size:1.05rem;font-weight:700;margin:0 0 1rem;border-left:4px solid #10b981;padding-left:10px;color:#1e293b">健康・医療ツールの活用ガイド</h2>
+<p style="font-size:.88rem;color:#475569;line-height:1.9;margin:0 0 .75rem">
+本ツール「姿勢スコア診断ツール」は、健康・医療に関連する情報の確認・計算・診断をブラウザ上で手軽に行えるように設計されています。
+初回利用時にはまずフォームや入力欄に必要な情報を入力し、「計算」「診断」「確認」などのボタンを押してください。
+結果はリアルタイムで表示され、条件を変えながら何度でも再計算・再診断をお試しいただけます。
+ご不明な点があった場合は、各入力項目の横にある説明文や「？」アイコンをご確認ください。
+</p>
+<p style="font-size:.88rem;color:#475569;line-height:1.9;margin:0 0 .75rem">
+スマートフォンからのご利用でも、PC同様にすべての機能をお使いいただけます。
+スマートフォンのホーム画面に本ページを追加（ブックマーク）すれば、アプリのように素早くアクセスできます。
+ブラウザの印刷機能（Ctrl+P または右上メニュー）を使えば、結果をPDF形式で保存・印刷することが可能です。
+計算結果のスクリーンショットを家族・友人・専門家と共有するのもお勧めです。
+</p>
+<h3 style="font-size:.95rem;font-weight:700;margin:1rem 0 .6rem;color:#1e293b">AppADayCreator のツールの特徴</h3>
+<ul style="margin:0;padding-left:1.25rem;font-size:.88rem;color:#475569;line-height:2.1">
+<li><strong>完全無料・登録不要</strong> — アカウント作成・メールアドレス登録なしで今すぐご利用いただけます</li>
+<li><strong>プライバシー完全保護</strong> — 入力したデータはすべてブラウザ内で処理され、外部サーバーには一切送信されません</li>
+<li><strong>マルチデバイス完全対応</strong> — スマートフォン・タブレット・PCすべてで最適なレイアウトで表示されます</li>
+<li><strong>定期的なコンテンツ更新</strong> — 法改正・制度変更・最新データに対応した情報を随時更新しています</li>
+<li><strong>広告による持続的な無料運営</strong> — 広告収入によって運営しているため、ユーザーの皆様は永続的に無料でご利用いただけます</li>
+<li><strong>400本以上のツールを無料提供</strong> — お金・健康・育児・キャリア・旅行・住まいなど幅広いジャンルのツールをご活用ください</li>
+</ul>
+<h3 style="font-size:.95rem;font-weight:700;margin:1.25rem 0 .6rem;color:#1e293b">関連ツールのご紹介</h3>
+<p style="font-size:.88rem;color:#475569;line-height:1.9;margin:0">
+AppADayCreatorでは、本ツール以外にも健康・医療カテゴリの便利なツールを多数ご提供しています。
+家計管理・健康記録・育児サポート・キャリア計画・旅行準備・住まいの整理など、日常生活のさまざまなシーンで役立つツールがそろっています。
+ぜひトップページから他のツールもご活用ください。すべて完全無料・登録不要でお使いいただけます。
+本ツールへのご意見・ご感想はお問い合わせページからお送りいただけます。皆様のフィードバックが品質改善につながります。
+</p>
+</div>
+</div>
+
+<!-- rakuten-affiliate-block -->
     <div style="border:1px solid #BF0000;background:#fff9f9;border-radius:10px;padding:14px;margin:12px auto;max-width:480px;text-align:center;">
       <p style="font-size:0.85rem;color:#4b5563;margin-bottom:8px;">🛒 関連商品を楽天市場で探す</p>
       <a href="https://hb.afl.rakuten.co.jp/ichiba/541ad0d2.ce2bed12.541ad0d3.a1a2318c/?pc=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E5%25A7%25BF%25E5%258B%25A2%25E7%259F%25AF%25E6%25AD%25A3%2520%25E3%2582%25B0%25E3%2583%2583%25E3%2582%25BA%2F&link_type=text" target="_blank" rel="nofollow sponsored noopener"
@@ -451,7 +939,35 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
         | <a href="terms.html" style="color:white;">利用規約</a>
         | <a href="contact.html" style="color:white;">お問い合わせ</a></p>
         <p style="margin-top:4px;font-size:11px;opacity:0.6;">最終更新: 2026年5月 | 本サービスはアフィリエイト広告を掲載しています（A8.net/Amazon）</p>
-        <p style="margin-top:6px;">© 2026 AppADayCreator. All services are free. | <a href="/tb-corp/?utm_source=appadaycreator&utm_medium=footer&utm_campaign=b2b_cta" onclick="gtag('event','b2b_cta_click',{source_page:location.pathname,cta_position:'footer',tool_category:'portal',destination:'tech-and-brace'})" style="color:white;opacity:0.75;font-size:11px;">Web制作・DX相談 → Tech&amp;Brace</a></p>
-    </footer>
+        <p style="margin-top:6px;">© 2026 AppADayCreator. All services are free.</p>
+    <div style="background:linear-gradient(135deg,#1e3a5f,#2563eb);padding:16px 12px;text-align:center;margin-top:12px;">
+  <p style="color:#e0e7ff;font-size:12px;font-weight:600;margin:0 0 4px;">運営：AppADayCreator / Tech&amp;Brace</p>
+  <p style="color:#cbd5e1;font-size:11px;margin:0 0 10px;">累計399個のWebサービスをAI駆動で開発し、現在361件以上を公開・運用しています。
+AI導入・業務自動化・Webサービス開発のご相談はこちら。</p>
+  <a href="https://tech-and-brace.com/ai-automation?utm_source=appadaycreator&utm_medium=footer&utm_campaign=b2b_cta" target="_blank" rel="noopener" onclick="if(typeof gtag==='function'){gtag('event','b2b_cta_click',{source_page:window.location.pathname,cta_position:'footer',tool_category:document.querySelector('[aria-label=\"パンくずリスト\"] li:nth-child(3) a')?document.querySelector('[aria-label=\"パンくずリスト\"] li:nth-child(3) a').innerText:'general',destination:'https://tech-and-brace.com/ai-automation'})}" style="display:inline-block;background:#fff;color:#1e3a5f;font-size:11px;font-weight:700;padding:6px 16px;border-radius:20px;text-decoration:none;">法人・B2B相談はこちら →</a>
+</div>
+</footer>
+<div style="text-align:center;padding:10px 16px 14px;background:#eef2ff;border-top:2px solid #c7d2fe;margin-top:8px">
+<a href="/blog/" style="color:#4f46e5;font-size:.85rem;font-weight:700">📖 マネー・育児・キャリアのコラムを読む →</a>
+</div>
+<div style="background:#eef2ff;border-left:4px solid #4f46e5;border-radius:.5rem;padding:1rem 1.25rem;margin:1.5rem auto;max-width:760px;font-size:.875rem">
+<p style="margin:0 0 .5rem;font-weight:700;color:#3730a3">📖 お役立ちコラム</p>
+<ul style="margin:0;padding-left:1.25rem;color:#4f46e5;line-height:2">
+<li><a href="/blog/stock-investment-beginner/" style="color:#4f46e5">株式投資の始め方【初心者完全ガイド】</a></li>
+<li><a href="/blog/nisa-comparison/" style="color:#4f46e5">新NISA vs iDeCo 徹底比較</a></li>
+<li><a href="/blog/investment-risk-management/" style="color:#4f46e5">投資のリスク管理入門</a></li>
+</ul>
+</div>
+<!-- r17-mobile-ux -->
+<a href="#top" id="back-to-top" aria-label="ページトップへ戻る" style="display:none;position:fixed;bottom:24px;right:20px;background:#4f46e5;color:#fff;border:none;border-radius:50%;width:48px;height:48px;font-size:1.4rem;line-height:48px;text-align:center;text-decoration:none;box-shadow:0 4px 12px rgba(79,70,229,.4);z-index:9000;cursor:pointer" title="ページトップへ">↑</a>
+<script>
+(function(){
+  var btn = document.getElementById('back-to-top');
+  if(!btn) return;
+  window.addEventListener('scroll', function(){
+    btn.style.display = window.scrollY > 400 ? 'block' : 'none';
+  }, {passive:true});
+})();
+</script>
 </body>
 </html>
