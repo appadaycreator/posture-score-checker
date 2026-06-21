@@ -153,6 +153,13 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
         .pv-bar .track{ height:9px; background:#eef3f4; border-radius:6px; overflow:hidden; }
         .pv-bar .fill{ height:100%; border-radius:6px; }
 
+        .faq-item{ background:#fff; border:1px solid #eef3f4; border-radius:12px; padding:0; margin-bottom:10px; box-shadow:0 3px 12px rgba(36,55,70,.04); overflow:hidden; }
+        .faq-item summary{ list-style:none; cursor:pointer; padding:16px 18px; font-weight:700; font-size:14.5px; color:var(--ink); display:flex; justify-content:space-between; align-items:center; gap:10px; }
+        .faq-item summary::-webkit-details-marker{ display:none; }
+        .faq-item summary::after{ content:'＋'; color:var(--primary); font-weight:800; flex:none; }
+        .faq-item[open] summary::after{ content:'−'; }
+        .faq-item .ans{ padding:0 18px 16px; font-size:13.5px; color:#64748b; line-height:1.8; }
+
         .cta-band{ position:relative; overflow:hidden; background:linear-gradient(120deg,var(--primary),#ff8a7a); color:#fff; }
         .cta-inner{ max-width:1080px; margin:0 auto; padding:42px 18px; display:grid; grid-template-columns:1.4fr .6fr; gap:24px; align-items:center; }
         .cta-band h2{ font-size:26px; font-weight:900; margin-bottom:10px; }
@@ -469,16 +476,22 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
         </div>
 
         <!-- FAQ セクション -->
-        <div class="card" style="margin-top:8px;">
-            <h2 style="font-size:17px;font-weight:800;margin-bottom:14px;color:#1f2937;border-bottom:3px solid #4f46e5;padding-bottom:8px;">❓ よくある質問</h2>
-            <div style="display:flex;flex-direction:column;gap:14px;">
-            
-            
-            
-            
-            
-            </div>
-        </div>
+        <section class="section" id="faq" aria-label="よくある質問">
+          <div class="section-head">
+            <span class="ey">FAQ</span>
+            <h2>よくある質問</h2>
+            <p>姿勢スコア診断ツールについて、よくいただくご質問にお答えします。</p>
+          </div>
+          <div style="max-width:780px;margin:0 auto;">
+            <details class="faq-item" open><summary>「姿勢スコア診断ツール」は無料で使えますか？</summary><div class="ans">はい、完全無料・登録不要です。会員登録やアプリのインストールなしで、ブラウザからすぐにご利用いただけます。</div></details>
+            <details class="faq-item"><summary>スマートフォンでも使えますか？</summary><div class="ans">はい、モバイル対応済みです。スマホひとつで約30秒、いつでもどこでも姿勢診断が行えます。</div></details>
+            <details class="faq-item"><summary>姿勢スコアはどのように計算されますか？</summary><div class="ans">座位・立位・首肩・その他の4カテゴリーをそれぞれ25点満点で評価し、合計100点満点で算出します。各質問への回答に応じて減点方式で採点されます。</div></details>
+            <details class="faq-item"><summary>スコアを上げるために最初にすべきことは何ですか？</summary><div class="ans">スコアが低いカテゴリーに集中することをおすすめします。多くの方は「デスク環境の見直し」でスコアが改善します。診断結果では弱点カテゴリーに合わせた改善エクササイズを提案します。</div></details>
+            <details class="faq-item"><summary>定期的に診断を受ける頻度はどのくらいですか？</summary><div class="ans">改善プログラムを実践している場合は2〜4週間に1回の再診断が目安です。生活習慣の変化があった際にもチェックすることで、早期に悪化を発見できます。</div></details>
+            <details class="faq-item"><summary>入力した情報は外部に送信されますか？</summary><div class="ans">いいえ。すべての処理はブラウザ内で完結し、入力情報が外部サーバーに送信されることはありません。プライバシーは保護されます。</div></details>
+            <details class="faq-item"><summary>診断結果は医療的な診断の代わりになりますか？</summary><div class="ans">本ツールの結果は参考情報です。痛みや症状が気になる場合は、整形外科・理学療法士など資格を持つ専門家にご相談ください。</div></details>
+          </div>
+        </section>
 
         <!-- SNSシェアCTA -->
         <div class="card" style="margin-top:8px;text-align:center;background:#f0f9ff;" role="complementary" aria-label="SNSシェア">
@@ -1213,7 +1226,11 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
 <div style="margin:1.5rem auto;max-width:760px;padding:0 1rem">
 <div style="background:white;border-radius:16px;padding:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.06)">
 <h3 style="font-size:.95rem;font-weight:700;margin:1.25rem 0 .6rem;color:#1e293b">関連ツールのご紹介</h3>
-
+<div style="display:flex;flex-direction:column;gap:8px">
+<a href="https://appadaycreator.com/stretch-timer/" style="display:block;background:#fef3c7;border:1.5px solid #fbbf24;color:#d97706;text-decoration:none;padding:12px;border-radius:8px;font-size:13px;font-weight:600;text-align:center">⏱️ Stretch Timer — デスク作業時の定期ストレッチ</a>
+<a href="https://appadaycreator.com/remote-work-advisor/" style="display:block;background:#dbeafe;border:1.5px solid #93c5fd;color:#1e40af;text-decoration:none;padding:12px;border-radius:8px;font-size:13px;font-weight:600;text-align:center">💻 リモートワーク診断 — 環境・コスト最適化</a>
+<a href="https://appadaycreator.com/bmi-body-tracker/" style="display:block;background:#dcfce7;border:1.5px solid #86efac;color:#15803d;text-decoration:none;padding:12px;border-radius:8px;font-size:13px;font-weight:600;text-align:center">🏃 BMI ボディトラッカー — 体重・体脂肪率管理</a>
+</div>
 </div>
 </div>
 <section class="cta-band" aria-label="無料診断の案内">
