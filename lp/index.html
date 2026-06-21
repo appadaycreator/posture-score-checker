@@ -34,7 +34,8 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"姿勢スコア診断ツール","description":"AI写真解析で猫背・反り腰・スマホ首を診断し改善エクササイズを提案。医師監修・完全無料。","url":"https://appadaycreator.com/posture-score-checker/","applicationCategory":"HealthApplication","operatingSystem":"Any","inLanguage":"ja","offers":{"@type":"Offer","price":"0","priceCurrency":"JPY"},"author":{"@type":"Organization","name":"AppADayCreator","url":"https://appadaycreator.com/"}}</script>
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
-        :root{ --primary:#FF6B6B; --primary-d:#f1545b; --accent:#4ECDC4; --accent-d:#3bb5ad; --ink:#243746; --muted:#64748b; }
+        :root{ --primary:#FF6B6B; --primary-d:#f1545b; --accent:#4ECDC4; --accent-d:#3bb5ad; --ink:#243746; --muted:#64748b;
+            --c-blue:#3B82F6; --c-blue-bg:#eaf2ff; --c-green:#22B07D; --c-green-bg:#e6f7f0; --c-purple:#8B5CF6; --c-purple-bg:#f1ecfe; --c-amber:#F59E0B; --c-amber-bg:#fff4e0; --c-teal:#0EA5A0; --c-teal-bg:#e2f6f4; }
         body{ font-family:'Inter','Noto Sans JP',sans-serif; background:#f7fbfb; color:var(--ink); line-height:1.6; }
         a{ color:inherit; }
         img{ max-width:100%; display:block; }
@@ -173,6 +174,38 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
         .voice-card .who b{ font-size:13px; }
         .voice-card .who span{ display:block; font-size:11.5px; color:#94a3b8; }
 
+        /* color variants for cards */
+        .feat-card.v-blue{ border-top-color:var(--c-blue); } .feat-card.v-blue .ic{ background:var(--c-blue-bg); }
+        .feat-card.v-green{ border-top-color:var(--c-green); } .feat-card.v-green .ic{ background:var(--c-green-bg); }
+        .feat-card.v-purple{ border-top-color:var(--c-purple); } .feat-card.v-purple .ic{ background:var(--c-purple-bg); }
+        .feat-card.v-amber{ border-top-color:var(--c-amber); } .feat-card.v-amber .ic{ background:var(--c-amber-bg); }
+        .feat-card.v-teal{ border-top-color:var(--c-teal); } .feat-card.v-teal .ic{ background:var(--c-teal-bg); }
+        .ph-card.v-blue{ border-top:4px solid var(--c-blue); } .ph-card.v-green{ border-top:4px solid var(--c-green); }
+        .ph-card.v-purple{ border-top:4px solid var(--c-purple); } .ph-card.v-amber{ border-top:4px solid var(--c-amber); }
+        .ph-card.v-teal{ border-top:4px solid var(--c-teal); } .ph-card.v-primary{ border-top:4px solid var(--primary); }
+        .chip{ display:inline-block; font-size:11px; font-weight:800; padding:3px 10px; border-radius:20px; margin-bottom:8px; }
+        .chip.b{ background:var(--c-blue-bg); color:var(--c-blue); } .chip.g{ background:var(--c-green-bg); color:var(--c-green); }
+        .chip.p{ background:var(--c-purple-bg); color:var(--c-purple); } .chip.a{ background:var(--c-amber-bg); color:var(--c-amber); }
+
+        /* comparison table */
+        .cmp-table{ width:100%; border-collapse:separate; border-spacing:0; background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 6px 20px rgba(36,55,70,.06); font-size:14px; }
+        .cmp-table th,.cmp-table td{ padding:15px 14px; text-align:center; border-bottom:1px solid #eef3f4; }
+        .cmp-table thead th{ font-weight:900; font-size:13.5px; }
+        .cmp-table thead th.ours{ background:linear-gradient(180deg,#eafaf8,#fff); color:var(--accent-d); }
+        .cmp-table thead th.clinic{ color:#7c8a97; } .cmp-table thead th.app{ color:#7c8a97; }
+        .cmp-table tbody th{ text-align:left; font-weight:700; color:#42596a; font-size:13.5px; background:#fafdfd; }
+        .cmp-table td.ours{ background:#f3fbfa; font-weight:800; color:var(--accent-d); }
+        .cmp-table .yes{ color:var(--c-green); font-weight:900; } .cmp-table .no{ color:#cbd5d8; font-weight:900; }
+        .cmp-table tr:last-child th,.cmp-table tr:last-child td{ border-bottom:none; }
+        @media(max-width:560px){ .cmp-table th,.cmp-table td{ padding:11px 7px; font-size:12px; } }
+
+        /* supervisor badge */
+        .sup-band{ display:flex; align-items:center; gap:18px; background:#fff; border-radius:18px; padding:20px 24px; box-shadow:0 6px 20px rgba(36,55,70,.06); border-left:5px solid var(--c-blue); }
+        .sup-band img{ width:72px; height:72px; border-radius:50%; object-fit:cover; flex-shrink:0; box-shadow:0 4px 12px rgba(36,55,70,.14); }
+        .sup-band .tx h3{ font-size:15px; font-weight:900; margin-bottom:4px; } .sup-band .tx p{ font-size:13px; color:#64748b; line-height:1.7; }
+        .sup-band .tx .role{ color:var(--c-blue); font-weight:800; font-size:12px; }
+        @media(max-width:560px){ .sup-band{ flex-direction:column; text-align:center; } }
+
         footer{ background:#243746; color:#cbd5e1; text-align:center; padding:28px 18px; font-size:12.5px; }
         footer a{ color:#9fe7e1; text-decoration:none; font-weight:600; }
         @media(max-width:480px){ .section{ padding:38px 0; } .section-head h2{ font-size:22px; } .hero h1{ font-size:24px; } }
@@ -220,10 +253,10 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
 <!-- 数値ストリップ -->
 <section class="stats-strip">
   <div class="wide">
-    <div class="stat-cell"><b>12</b><span>姿勢タイプ分類</span></div>
-    <div class="stat-cell"><b>30<small style="font-size:14px;">秒</small></b><span>診断にかかる時間</span></div>
-    <div class="stat-cell"><b>96<small style="font-size:14px;">%</small></b><span>「課題が分かった」</span></div>
-    <div class="stat-cell"><b>¥0</b><span>登録不要・完全無料</span></div>
+    <div class="stat-cell"><b style="color:var(--c-blue);">12</b><span>姿勢タイプ分類</span></div>
+    <div class="stat-cell"><b style="color:var(--c-purple);">30<small style="font-size:14px;">秒</small></b><span>診断にかかる時間</span></div>
+    <div class="stat-cell"><b style="color:var(--c-green);">96<small style="font-size:14px;">%</small></b><span>「課題が分かった」</span></div>
+    <div class="stat-cell"><b style="color:var(--c-amber);">¥0</b><span>登録不要・完全無料</span></div>
   </div>
 </section>
 
@@ -236,12 +269,12 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
       <p>放置すると慢性化する不調。まずは自分の姿勢タイプを知ることから。</p>
     </div>
     <div class="grid3">
-      <div class="ph-card"><img class="ph" src="../assets/photos/photo_02.jpg" alt="首・肩のこりに悩む男性" loading="lazy"><div class="bd"><h3>慢性的な肩こり・首こり</h3><p>長時間のデスクワークで首が前に出て、首肩への負担が蓄積していませんか。</p></div></div>
-      <div class="ph-card"><img class="ph" src="../assets/photos/photo_20.jpg" alt="肩甲骨まわりの張りを感じる女性" loading="lazy"><div class="bd"><h3>肩甲骨まわりの張り</h3><p>巻き肩で肩甲骨が外に開き、背中の張りや呼吸の浅さにつながります。</p></div></div>
-      <div class="ph-card"><img class="ph" src="../assets/photos/photo_18.jpg" alt="腰痛に悩む男性" loading="lazy"><div class="bd"><h3>慢性的な腰痛</h3><p>反り腰・骨盤の傾きが腰部へ過度な負担をかけているサインかも。</p></div></div>
-      <div class="ph-card"><img class="ph" src="../assets/photos/photo_03.jpg" alt="スマホを見て猫背になる女性" loading="lazy"><div class="bd"><h3>スマホ猫背・ストレートネック</h3><p>うつむき姿勢で頸椎に大きな負荷。若年層にも急増しています。</p></div></div>
-      <div class="ph-card"><img class="ph" src="../assets/photos/photo_11.jpg" alt="作業中に首がつらい男性" loading="lazy"><div class="bd"><h3>作業中に首がつらい</h3><p>モニター位置や椅子の高さが合わず、姿勢の乱れが加速します。</p></div></div>
-      <div class="ph-card"><img class="ph" src="../assets/photos/photo_14.jpg" alt="頬杖をつく女性" loading="lazy"><div class="bd"><h3>頬杖・足組みのクセ</h3><p>無意識の習慣が左右差・骨盤の歪みを生み、バランスを崩します。</p></div></div>
+      <div class="ph-card v-primary"><img class="ph" src="../assets/photos/photo_02.jpg" alt="首・肩のこりに悩む男性" loading="lazy"><div class="bd"><span class="chip" style="background:#ffe7e6;color:var(--primary-d);">首・肩</span><h3>慢性的な肩こり・首こり</h3><p>長時間のデスクワークで首が前に出て、首肩への負担が蓄積していませんか。</p></div></div>
+      <div class="ph-card v-blue"><img class="ph" src="../assets/photos/photo_20.jpg" alt="肩甲骨まわりの張りを感じる女性" loading="lazy"><div class="bd"><span class="chip b">背中</span><h3>肩甲骨まわりの張り</h3><p>巻き肩で肩甲骨が外に開き、背中の張りや呼吸の浅さにつながります。</p></div></div>
+      <div class="ph-card v-amber"><img class="ph" src="../assets/photos/photo_18.jpg" alt="腰痛に悩む男性" loading="lazy"><div class="bd"><span class="chip a">腰</span><h3>慢性的な腰痛</h3><p>反り腰・骨盤の傾きが腰部へ過度な負担をかけているサインかも。</p></div></div>
+      <div class="ph-card v-purple"><img class="ph" src="../assets/photos/photo_03.jpg" alt="スマホを見て猫背になる女性" loading="lazy"><div class="bd"><span class="chip p">スマホ首</span><h3>スマホ猫背・ストレートネック</h3><p>うつむき姿勢で頸椎に大きな負荷。若年層にも急増しています。</p></div></div>
+      <div class="ph-card v-green"><img class="ph" src="../assets/photos/photo_11.jpg" alt="作業中に首がつらい男性" loading="lazy"><div class="bd"><span class="chip g">作業環境</span><h3>作業中に首がつらい</h3><p>モニター位置や椅子の高さが合わず、姿勢の乱れが加速します。</p></div></div>
+      <div class="ph-card v-teal"><img class="ph" src="../assets/photos/photo_14.jpg" alt="頬杖をつく女性" loading="lazy"><div class="bd"><span class="chip" style="background:var(--c-teal-bg);color:var(--c-teal);">クセ</span><h3>頬杖・足組みのクセ</h3><p>無意識の習慣が左右差・骨盤の歪みを生み、バランスを崩します。</p></div></div>
     </div>
   </div>
 </section>
@@ -255,11 +288,19 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
       <p>専門家監修×AI解析で、信頼できる診断と改善提案を完全無料で。</p>
     </div>
     <div class="grid5">
-      <div class="feat-card"><div class="ic"><img src="../assets/icons/split/01-06.png" alt=""></div><h3>多角度AI解析</h3><p>正面・側面・背面の3方向から姿勢を自動解析。</p></div>
-      <div class="feat-card"><div class="ic"><img src="../assets/icons/split/02-03.png" alt=""></div><h3>12タイプ分類</h3><p>姿勢を12タイプに分類し詳細スコアを表示。</p></div>
-      <div class="feat-card"><div class="ic"><img src="../assets/icons/split/01-02.png" alt=""></div><h3>専門家監修</h3><p>医師＋理学療法士監修で安心の信頼性。</p></div>
-      <div class="feat-card"><div class="ic"><img src="../assets/icons/split/01-04.png" alt=""></div><h3>登録不要・無料</h3><p>会員登録もアプリも不要。今すぐ診断可能。</p></div>
-      <div class="feat-card"><div class="ic"><img src="../assets/icons/split/01-05.png" alt=""></div><h3>セキュリティ</h3><p>ブラウザ内完結でプライバシーを保護。</p></div>
+      <div class="feat-card v-blue"><div class="ic"><img src="../assets/icons/split/01-06.png" alt=""></div><h3>多角度AI解析</h3><p>正面・側面・背面の3方向から姿勢を自動解析。</p></div>
+      <div class="feat-card v-green"><div class="ic"><img src="../assets/icons/split/02-03.png" alt=""></div><h3>12タイプ分類</h3><p>姿勢を12タイプに分類し詳細スコアを表示。</p></div>
+      <div class="feat-card v-purple"><div class="ic"><img src="../assets/icons/split/01-02.png" alt=""></div><h3>専門家監修</h3><p>医師＋理学療法士監修で安心の信頼性。</p></div>
+      <div class="feat-card v-amber"><div class="ic"><img src="../assets/icons/split/01-04.png" alt=""></div><h3>登録不要・無料</h3><p>会員登録もアプリも不要。今すぐ診断可能。</p></div>
+      <div class="feat-card v-teal"><div class="ic"><img src="../assets/icons/split/01-05.png" alt=""></div><h3>セキュリティ</h3><p>ブラウザ内完結でプライバシーを保護。</p></div>
+    </div>
+    <div class="sup-band" style="margin-top:24px;">
+      <img src="../assets/photos/photo_04.jpg" alt="監修：理学療法士">
+      <div class="tx">
+        <span class="role">医師＋理学療法士 監修</span>
+        <h3>専門家の知見をロジックに反映</h3>
+        <p>整形外科医と理学療法士が、姿勢タイプの判定基準と改善メニューの設計を監修。臨床現場の視点を取り入れ、信頼できる診断を目指しています。</p>
+      </div>
     </div>
   </div>
 </section>
@@ -305,6 +346,37 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
   </div>
 </section>
 
+<!-- 比較表 -->
+<section class="section">
+  <div class="wide" style="max-width:880px;">
+    <div class="section-head">
+      <span class="ey">COMPARISON</span>
+      <h2>他の方法との比較</h2>
+      <p>「まず自分の姿勢タイプを知る」なら、無料・30秒・登録不要の本ツールが最適です。</p>
+    </div>
+    <table class="cmp-table">
+      <thead>
+        <tr>
+          <th style="text-align:left;"></th>
+          <th class="ours">姿勢スコア診断</th>
+          <th class="clinic">整体・整骨院</th>
+          <th class="app">市販の姿勢アプリ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th>料金</th><td class="ours">¥0 完全無料</td><td>3,000〜6,000円/回</td><td>月額あり</td></tr>
+        <tr><th>所要時間</th><td class="ours">約30秒</td><td>予約・来店が必要</td><td>5〜10分</td></tr>
+        <tr><th>登録・インストール</th><td class="ours"><span class="yes">不要</span></td><td><span class="no">予約必須</span></td><td><span class="no">必要</span></td></tr>
+        <tr><th>専門家監修</th><td class="ours"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="no">△</span></td></tr>
+        <tr><th>12タイプ分類スコア</th><td class="ours"><span class="yes">✓</span></td><td><span class="no">—</span></td><td><span class="no">△</span></td></tr>
+        <tr><th>改善エクササイズ提案</th><td class="ours"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="no">△</span></td></tr>
+        <tr><th>プライバシー</th><td class="ours">ブラウザ内完結</td><td>—</td><td>外部送信あり</td></tr>
+      </tbody>
+    </table>
+    <p style="text-align:center;font-size:11.5px;color:#94a3b8;margin-top:12px;">※ 一般的な料金・特徴をもとにした比較イメージです。本ツールは医療行為ではありません。</p>
+  </div>
+</section>
+
 <!-- 姿勢悪化が招く影響（データ可視化） -->
 <section class="section">
   <div class="wide">
@@ -324,10 +396,10 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
       </div>
       <div>
         <p style="font-size:13.5px;color:#516170;margin-bottom:18px;line-height:1.8;">姿勢の乱れは、肩こり・腰痛だけでなく、呼吸の浅さや集中力の低下にもつながります。あてはまる不調を可視化し、原因タイプから対策を始めましょう。</p>
-        <div class="hbar"><div class="t"><span>肩こり・首こり</span><span>72%</span></div><div class="track"><div class="fill" style="width:72%;"></div></div></div>
-        <div class="hbar"><div class="t"><span>腰の重さ・腰痛</span><span>58%</span></div><div class="track"><div class="fill" style="width:58%;"></div></div></div>
-        <div class="hbar"><div class="t"><span>スマホ首・ストレートネック</span><span>49%</span></div><div class="track"><div class="fill" style="width:49%;"></div></div></div>
-        <div class="hbar"><div class="t"><span>疲れやすさ・だるさ</span><span>41%</span></div><div class="track"><div class="fill" style="width:41%;"></div></div></div>
+        <div class="hbar"><div class="t"><span>肩こり・首こり</span><span>72%</span></div><div class="track"><div class="fill" style="width:72%;background:linear-gradient(90deg,var(--primary),#ff9d8e);"></div></div></div>
+        <div class="hbar"><div class="t"><span>腰の重さ・腰痛</span><span>58%</span></div><div class="track"><div class="fill" style="width:58%;background:linear-gradient(90deg,var(--c-amber),#ffc861);"></div></div></div>
+        <div class="hbar"><div class="t"><span>スマホ首・ストレートネック</span><span>49%</span></div><div class="track"><div class="fill" style="width:49%;background:linear-gradient(90deg,var(--c-purple),#b69af9);"></div></div></div>
+        <div class="hbar"><div class="t"><span>疲れやすさ・だるさ</span><span>41%</span></div><div class="track"><div class="fill" style="width:41%;background:linear-gradient(90deg,var(--c-blue),#7eb0ff);"></div></div></div>
         <p style="font-size:11.5px;color:#94a3b8;margin-top:6px;">※ 自覚症状アンケートをもとにした参考値（複数回答）。</p>
       </div>
     </div>
@@ -343,10 +415,10 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
       <p>姿勢タイプに合わせて、自宅でできるストレッチ・運動をわかりやすく提案します。</p>
     </div>
     <div class="grid4">
-      <div class="ph-card"><img class="ph" src="../assets/photos/photo_06.jpg" alt="胸を開くストレッチをする女性" loading="lazy"><div class="bd"><h3>胸開きストレッチ</h3><p>巻き肩・猫背タイプに。固まった胸まわりをゆるめて姿勢をリセット。</p></div></div>
-      <div class="ph-card"><img class="ph" src="../assets/photos/photo_12.jpg" alt="体幹トレーニングをする人" loading="lazy"><div class="bd"><h3>体幹エクササイズ</h3><p>反り腰・骨盤の傾きタイプに。土台となる体幹を安定させます。</p></div></div>
-      <div class="ph-card"><img class="ph" src="../assets/photos/photo_15.jpg" alt="首肩のストレッチをする女性" loading="lazy"><div class="bd"><h3>首・肩リセット</h3><p>スマホ首タイプに。前に出た頭の位置を整え、こりを和らげます。</p></div></div>
-      <div class="ph-card"><img class="ph" src="../assets/photos/photo_23.jpg" alt="ストレッチをする女性" loading="lazy" onerror="this.src='../assets/photos/photo_07.jpg'"><div class="bd"><h3>習慣チェック</h3><p>頬杖・足組みなどのクセを見直し、日常から姿勢を底上げします。</p></div></div>
+      <div class="ph-card v-green"><img class="ph" src="../assets/photos/photo_06.jpg" alt="胸を開くストレッチをする女性" loading="lazy"><div class="bd"><span class="chip g">巻き肩・猫背</span><h3>胸開きストレッチ</h3><p>巻き肩・猫背タイプに。固まった胸まわりをゆるめて姿勢をリセット。</p></div></div>
+      <div class="ph-card v-blue"><img class="ph" src="../assets/photos/photo_12.jpg" alt="体幹トレーニングをする人" loading="lazy"><div class="bd"><span class="chip b">反り腰</span><h3>体幹エクササイズ</h3><p>反り腰・骨盤の傾きタイプに。土台となる体幹を安定させます。</p></div></div>
+      <div class="ph-card v-purple"><img class="ph" src="../assets/photos/photo_15.jpg" alt="首肩のストレッチをする女性" loading="lazy"><div class="bd"><span class="chip p">スマホ首</span><h3>首・肩リセット</h3><p>スマホ首タイプに。前に出た頭の位置を整え、こりを和らげます。</p></div></div>
+      <div class="ph-card v-amber"><img class="ph" src="../assets/photos/photo_22.jpg" alt="ストレッチをする女性" loading="lazy" onerror="this.src='../assets/photos/photo_07.jpg'"><div class="bd"><span class="chip a">習慣</span><h3>習慣チェック</h3><p>頬杖・足組みなどのクセを見直し、日常から姿勢を底上げします。</p></div></div>
     </div>
   </div>
 </section>

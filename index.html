@@ -49,7 +49,20 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"姿勢スコア診断ツール【無料】無料診断・アドバイスの使い方","step":[{"@type":"HowToStep","position":1,"name":"必要事項を入力する","text":"フォームに必要な情報（数値・選択肢・条件）を入力または選択する"},{"@type":"HowToStep","position":2,"name":"診断・計算を実行する","text":"「診断する」「計算する」または「確認する」ボタンを押して結果を取得する"},{"@type":"HowToStep","position":3,"name":"結果・分析を確認する","text":"表示された診断結果・計算結果・グラフをじっくり確認する"},{"@type":"HowToStep","position":4,"name":"アドバイスを活用する","text":"結果に基づくアドバイスや提案を日常生活に取り入れる"},{"@type":"HowToStep","position":5,"name":"定期的に再チェックする","text":"生活変化に応じて定期的に再診断して進捗を追跡する"}]}</script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root{ --primary:#FF6B6B; --primary-d:#f1545b; --accent:#4ECDC4; --accent-d:#3bb5ad; --ink:#243746; --muted:#64748b; }
+        :root{ --primary:#FF6B6B; --primary-d:#f1545b; --accent:#4ECDC4; --accent-d:#3bb5ad; --ink:#243746; --muted:#64748b;
+            --c-blue:#3B82F6; --c-blue-bg:#eaf2ff; --c-green:#22B07D; --c-green-bg:#e6f7f0; --c-purple:#8B5CF6; --c-purple-bg:#f1ecfe; --c-amber:#F59E0B; --c-amber-bg:#fff4e0; --c-teal:#0EA5A0; --c-teal-bg:#e2f6f4; }
+        .feat-card.v-blue{ border-top-color:var(--c-blue); } .feat-card.v-blue .ic{ background:var(--c-blue-bg); }
+        .feat-card.v-green{ border-top-color:var(--c-green); } .feat-card.v-green .ic{ background:var(--c-green-bg); }
+        .feat-card.v-purple{ border-top-color:var(--c-purple); } .feat-card.v-purple .ic{ background:var(--c-purple-bg); }
+        .feat-card.v-amber{ border-top-color:var(--c-amber); } .feat-card.v-amber .ic{ background:var(--c-amber-bg); }
+        .feat-card.v-teal{ border-top-color:var(--c-teal); } .feat-card.v-teal .ic{ background:var(--c-teal-bg); }
+        .feat-card.v-primary{ border-top-color:var(--primary); } .feat-card.v-primary .ic{ background:#ffe7e6; }
+        .ph-card.v-blue{ border-top:4px solid var(--c-blue); } .ph-card.v-green{ border-top:4px solid var(--c-green); }
+        .ph-card.v-purple{ border-top:4px solid var(--c-purple); } .ph-card.v-amber{ border-top:4px solid var(--c-amber); }
+        .ph-card.v-teal{ border-top:4px solid var(--c-teal); } .ph-card.v-primary{ border-top:4px solid var(--primary); }
+        .chip{ display:inline-block; font-size:11px; font-weight:800; padding:3px 10px; border-radius:20px; margin-bottom:8px; }
+        .chip.b{ background:var(--c-blue-bg); color:var(--c-blue); } .chip.g{ background:var(--c-green-bg); color:var(--c-green); }
+        .chip.p{ background:var(--c-purple-bg); color:var(--c-purple); } .chip.a{ background:var(--c-amber-bg); color:var(--c-amber); }
         body { font-family: 'Inter', 'Noto Sans JP', sans-serif; background: #f7fbfb; min-height: 100vh; color: #243746; line-height: 1.6; }
         .container { max-width: 820px; margin: 0 auto; padding: 16px; }
         .wide { max-width: 1080px; margin: 0 auto; padding: 0 18px; }
@@ -347,12 +360,12 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
             <p>放置すると慢性化する不調。まずは自分の姿勢タイプを知ることから。</p>
           </div>
           <div class="grid3">
-            <div class="ph-card"><img class="ph" src="assets/photos/photo_02.jpg" alt="デスクで首・肩のこりに悩む男性" loading="lazy"><div class="bd"><h3>慢性的な肩こり・首こり</h3><p>長時間のデスクワークで首が前に出て、肩や首に負担が蓄積していませんか。</p></div></div>
-            <div class="ph-card"><img class="ph" src="assets/photos/photo_20.jpg" alt="肩甲骨まわりの張りを感じる女性" loading="lazy"><div class="bd"><h3>肩甲骨まわりの張り</h3><p>巻き肩により肩甲骨が外に開き、背中の張り・呼吸の浅さにつながります。</p></div></div>
-            <div class="ph-card"><img class="ph" src="assets/photos/photo_18.jpg" alt="腰痛に悩む男性" loading="lazy"><div class="bd"><h3>慢性的な腰痛</h3><p>反り腰・骨盤の傾きが腰部へ過度な負担をかけているサインかもしれません。</p></div></div>
-            <div class="ph-card"><img class="ph" src="assets/photos/photo_03.jpg" alt="スマホを見て猫背になる女性" loading="lazy"><div class="bd"><h3>スマホ猫背・ストレートネック</h3><p>うつむき姿勢で頸椎に大きな負荷。スマホ首は若年層にも急増しています。</p></div></div>
-            <div class="ph-card"><img class="ph" src="assets/photos/photo_11.jpg" alt="作業中に首のつらさを感じる男性" loading="lazy"><div class="bd"><h3>作業中に首がつらい</h3><p>モニター位置や椅子の高さが合っていないと、姿勢の乱れが加速します。</p></div></div>
-            <div class="ph-card"><img class="ph" src="assets/photos/photo_14.jpg" alt="頬杖をつく女性" loading="lazy"><div class="bd"><h3>頬杖・足組みのクセ</h3><p>無意識の習慣が左右差・骨盤の歪みを生み、姿勢バランスを崩します。</p></div></div>
+            <div class="ph-card v-primary"><img class="ph" src="assets/photos/photo_02.jpg" alt="デスクで首・肩のこりに悩む男性" loading="lazy"><div class="bd"><span class="chip" style="background:#ffe7e6;color:var(--primary-d);">首・肩</span><h3>慢性的な肩こり・首こり</h3><p>長時間のデスクワークで首が前に出て、肩や首に負担が蓄積していませんか。</p></div></div>
+            <div class="ph-card v-blue"><img class="ph" src="assets/photos/photo_20.jpg" alt="肩甲骨まわりの張りを感じる女性" loading="lazy"><div class="bd"><span class="chip b">背中</span><h3>肩甲骨まわりの張り</h3><p>巻き肩により肩甲骨が外に開き、背中の張り・呼吸の浅さにつながります。</p></div></div>
+            <div class="ph-card v-amber"><img class="ph" src="assets/photos/photo_18.jpg" alt="腰痛に悩む男性" loading="lazy"><div class="bd"><span class="chip a">腰</span><h3>慢性的な腰痛</h3><p>反り腰・骨盤の傾きが腰部へ過度な負担をかけているサインかもしれません。</p></div></div>
+            <div class="ph-card v-purple"><img class="ph" src="assets/photos/photo_03.jpg" alt="スマホを見て猫背になる女性" loading="lazy"><div class="bd"><span class="chip p">スマホ首</span><h3>スマホ猫背・ストレートネック</h3><p>うつむき姿勢で頸椎に大きな負荷。スマホ首は若年層にも急増しています。</p></div></div>
+            <div class="ph-card v-green"><img class="ph" src="assets/photos/photo_11.jpg" alt="作業中に首のつらさを感じる男性" loading="lazy"><div class="bd"><span class="chip g">作業環境</span><h3>作業中に首がつらい</h3><p>モニター位置や椅子の高さが合っていないと、姿勢の乱れが加速します。</p></div></div>
+            <div class="ph-card v-teal"><img class="ph" src="assets/photos/photo_14.jpg" alt="頬杖をつく女性" loading="lazy"><div class="bd"><span class="chip" style="background:var(--c-teal-bg);color:var(--c-teal);">クセ</span><h3>頬杖・足組みのクセ</h3><p>無意識の習慣が左右差・骨盤の歪みを生み、姿勢バランスを崩します。</p></div></div>
           </div>
         </section>
 
@@ -364,12 +377,12 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
             <p>専門家監修×AI解析で、信頼できる診断と改善提案を完全無料で。</p>
           </div>
           <div class="grid3">
-            <div class="feat-card"><div class="ic"><img src="assets/icons/split/01-06.png" alt=""></div><h3>多角度AI写真解析</h3><p>正面・側面・背面の3方向から姿勢を自動解析し、ズレを数値で可視化します。</p></div>
-            <div class="feat-card"><div class="ic"><img src="assets/icons/split/02-03.png" alt=""></div><h3>12タイプ姿勢分類</h3><p>猫背・反り腰・スマホ首など12タイプに分類し、詳細なスコア内訳を表示。</p></div>
-            <div class="feat-card"><div class="ic"><img src="assets/icons/split/01-02.png" alt=""></div><h3>医師＋理学療法士監修</h3><p>専門家監修のロジックとアドバイスで、安心して改善に取り組めます。</p></div>
-            <div class="feat-card"><div class="ic"><img src="assets/icons/split/01-04.png" alt=""></div><h3>登録不要・完全無料</h3><p>会員登録もアプリも不要。ゼロフリクションで今すぐ診断を始められます。</p></div>
-            <div class="feat-card"><div class="ic"><img src="assets/icons/split/01-05.png" alt=""></div><h3>セキュリティ認証済み</h3><p>入力情報はブラウザ内で完結。外部サーバーに送信されずプライバシーを保護。</p></div>
-            <div class="feat-card"><div class="ic"><img src="assets/icons/split/02-04.png" alt=""></div><h3>進捗トラッキング</h3><p>診断履歴をグラフで記録。改善前後のスコア変化をひと目で確認できます。</p></div>
+            <div class="feat-card v-blue"><div class="ic"><img src="assets/icons/split/01-06.png" alt=""></div><h3>多角度AI写真解析</h3><p>正面・側面・背面の3方向から姿勢を自動解析し、ズレを数値で可視化します。</p></div>
+            <div class="feat-card v-green"><div class="ic"><img src="assets/icons/split/02-03.png" alt=""></div><h3>12タイプ姿勢分類</h3><p>猫背・反り腰・スマホ首など12タイプに分類し、詳細なスコア内訳を表示。</p></div>
+            <div class="feat-card v-purple"><div class="ic"><img src="assets/icons/split/01-02.png" alt=""></div><h3>医師＋理学療法士監修</h3><p>専門家監修のロジックとアドバイスで、安心して改善に取り組めます。</p></div>
+            <div class="feat-card v-amber"><div class="ic"><img src="assets/icons/split/01-04.png" alt=""></div><h3>登録不要・完全無料</h3><p>会員登録もアプリも不要。ゼロフリクションで今すぐ診断を始められます。</p></div>
+            <div class="feat-card v-teal"><div class="ic"><img src="assets/icons/split/01-05.png" alt=""></div><h3>セキュリティ認証済み</h3><p>入力情報はブラウザ内で完結。外部サーバーに送信されずプライバシーを保護。</p></div>
+            <div class="feat-card v-primary"><div class="ic"><img src="assets/icons/split/02-04.png" alt=""></div><h3>進捗トラッキング</h3><p>診断履歴をグラフで記録。改善前後のスコア変化をひと目で確認できます。</p></div>
           </div>
         </section>
 
@@ -418,9 +431,9 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
             <p>専門家監修のメニューを、自宅・デスクで無理なく続けられます。</p>
           </div>
           <div class="grid3">
-            <div class="ph-card"><img class="ph" src="assets/photos/photo_15.jpg" alt="キャット&カウストレッチ"><div class="bd"><h3>キャット&カウ（猫背・腰痛）</h3><p>四つん這いで背中を丸める・反らすを繰り返し、背骨の柔軟性を回復します。</p></div></div>
-            <div class="ph-card"><img class="ph" src="assets/photos/photo_12.jpg" alt="デスクでの肩甲骨ストレッチ"><div class="bd"><h3>肩甲骨ストレッチ（巻き肩）</h3><p>デスクでできる胸を開くストレッチで、巻き肩・肩こりをリセット。</p></div></div>
-            <div class="ph-card"><img class="ph" src="assets/photos/photo_04.jpg" alt="理学療法士による姿勢指導"><div class="bd"><h3>専門家監修のフォーム指導</h3><p>理学療法士監修の正しいフォームで、効果的かつ安全に改善できます。</p></div></div>
+            <div class="ph-card v-green"><img class="ph" src="assets/photos/photo_15.jpg" alt="キャット&カウストレッチ"><div class="bd"><span class="chip g">猫背・腰痛</span><h3>キャット&カウ（猫背・腰痛）</h3><p>四つん這いで背中を丸める・反らすを繰り返し、背骨の柔軟性を回復します。</p></div></div>
+            <div class="ph-card v-blue"><img class="ph" src="assets/photos/photo_12.jpg" alt="デスクでの肩甲骨ストレッチ"><div class="bd"><span class="chip b">巻き肩</span><h3>肩甲骨ストレッチ（巻き肩）</h3><p>デスクでできる胸を開くストレッチで、巻き肩・肩こりをリセット。</p></div></div>
+            <div class="ph-card v-purple"><img class="ph" src="assets/photos/photo_04.jpg" alt="理学療法士による姿勢指導"><div class="bd"><span class="chip p">監修</span><h3>専門家監修のフォーム指導</h3><p>理学療法士監修の正しいフォームで、効果的かつ安全に改善できます。</p></div></div>
           </div>
         </section>
 
