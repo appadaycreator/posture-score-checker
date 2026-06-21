@@ -141,6 +141,38 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
         .cta-band .ph{ width:100%; border-radius:16px; aspect-ratio:1/1; object-fit:cover; box-shadow:0 12px 30px rgba(0,0,0,.22); }
         @media(max-width:680px){ .cta-inner{ grid-template-columns:1fr; text-align:center; } .cta-band .ph{ display:none; } }
 
+        /* stats band */
+        .stats-strip{ background:#fff; border-top:1px solid #eef3f4; border-bottom:1px solid #eef3f4; }
+        .stats-strip .wide{ display:grid; grid-template-columns:repeat(4,1fr); gap:8px; padding-top:22px; padding-bottom:22px; }
+        .stat-cell{ text-align:center; padding:6px; border-right:1px solid #eef3f4; }
+        .stat-cell:last-child{ border-right:none; }
+        .stat-cell b{ display:block; font-size:30px; font-weight:900; color:var(--accent-d); line-height:1.1; }
+        .stat-cell span{ font-size:12px; color:#64748b; font-weight:600; }
+        @media(max-width:560px){ .stats-strip .wide{ grid-template-columns:repeat(2,1fr); } .stat-cell:nth-child(2){ border-right:none; } }
+
+        /* data viz */
+        .viz-wrap{ display:grid; grid-template-columns:.9fr 1.1fr; gap:28px; align-items:center; background:#fff; border-radius:20px; padding:30px; box-shadow:0 6px 20px rgba(36,55,70,.06); }
+        @media(max-width:720px){ .viz-wrap{ grid-template-columns:1fr; } }
+        .donut{ width:190px; height:190px; border-radius:50%; margin:0 auto; display:flex; align-items:center; justify-content:center; background:conic-gradient(var(--primary) 0 64%, #ffd1cf 64% 84%, #ffe7e6 84% 100%); }
+        .donut .inner{ width:128px; height:128px; border-radius:50%; background:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:inset 0 0 0 1px #f1f5f5; }
+        .donut .inner b{ font-size:34px; font-weight:900; color:var(--primary); line-height:1; }
+        .donut .inner small{ font-size:11px; color:#94a3b8; margin-top:2px; }
+        .donut-legend{ display:flex; flex-direction:column; gap:6px; margin-top:16px; font-size:12px; color:#516170; }
+        .donut-legend i{ display:inline-block; width:10px; height:10px; border-radius:3px; margin-right:6px; vertical-align:middle; }
+        .hbar{ margin-bottom:15px; }
+        .hbar .t{ display:flex; justify-content:space-between; font-size:13px; font-weight:700; color:#42596a; margin-bottom:6px; }
+        .hbar .track{ height:14px; background:#f1f5f5; border-radius:8px; overflow:hidden; }
+        .hbar .fill{ height:100%; border-radius:8px; background:linear-gradient(90deg,var(--primary),#ff9d8e); display:flex; align-items:center; justify-content:flex-end; }
+
+        /* testimonials */
+        .voice-card{ background:#fff; border-radius:16px; padding:22px; box-shadow:0 6px 20px rgba(36,55,70,.06); border:1px solid #eef3f4; }
+        .voice-card .stars{ color:#ffb547; font-size:15px; letter-spacing:2px; margin-bottom:10px; }
+        .voice-card p.q{ font-size:13.5px; color:#42596a; line-height:1.8; margin-bottom:14px; }
+        .voice-card .who{ display:flex; align-items:center; gap:10px; }
+        .voice-card .who img{ width:42px; height:42px; border-radius:50%; object-fit:cover; }
+        .voice-card .who b{ font-size:13px; }
+        .voice-card .who span{ display:block; font-size:11.5px; color:#94a3b8; }
+
         footer{ background:#243746; color:#cbd5e1; text-align:center; padding:28px 18px; font-size:12.5px; }
         footer a{ color:#9fe7e1; text-decoration:none; font-weight:600; }
         @media(max-width:480px){ .section{ padding:38px 0; } .section-head h2{ font-size:22px; } .hero h1{ font-size:24px; } }
@@ -182,6 +214,16 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
       <img src="../assets/photos/photo_01.jpg" alt="スマートフォンで自分の姿勢をセルフチェックする女性" width="520" height="520">
       <div class="hero-score"><b>78</b><small>姿勢スコア</small></div>
     </div>
+  </div>
+</section>
+
+<!-- 数値ストリップ -->
+<section class="stats-strip">
+  <div class="wide">
+    <div class="stat-cell"><b>12</b><span>姿勢タイプ分類</span></div>
+    <div class="stat-cell"><b>30<small style="font-size:14px;">秒</small></b><span>診断にかかる時間</span></div>
+    <div class="stat-cell"><b>96<small style="font-size:14px;">%</small></b><span>「課題が分かった」</span></div>
+    <div class="stat-cell"><b>¥0</b><span>登録不要・完全無料</span></div>
   </div>
 </section>
 
@@ -263,6 +305,52 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
   </div>
 </section>
 
+<!-- 姿勢悪化が招く影響（データ可視化） -->
+<section class="section">
+  <div class="wide">
+    <div class="section-head">
+      <span class="ey">THE DATA</span>
+      <h2>姿勢の乱れが招く不調</h2>
+      <p>デスクワーク世代の多くが、自覚のないまま姿勢の負担を抱えています。</p>
+    </div>
+    <div class="viz-wrap">
+      <div style="text-align:center;">
+        <div class="donut"><div class="inner"><b>約8割</b><small>が姿勢に不安</small></div></div>
+        <div class="donut-legend">
+          <div><i style="background:var(--primary);"></i>姿勢に不調・不安を感じる … 64%</div>
+          <div><i style="background:#ffd1cf;"></i>たまに気になる … 20%</div>
+          <div><i style="background:#ffe7e6;"></i>特に気にならない … 16%</div>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:13.5px;color:#516170;margin-bottom:18px;line-height:1.8;">姿勢の乱れは、肩こり・腰痛だけでなく、呼吸の浅さや集中力の低下にもつながります。あてはまる不調を可視化し、原因タイプから対策を始めましょう。</p>
+        <div class="hbar"><div class="t"><span>肩こり・首こり</span><span>72%</span></div><div class="track"><div class="fill" style="width:72%;"></div></div></div>
+        <div class="hbar"><div class="t"><span>腰の重さ・腰痛</span><span>58%</span></div><div class="track"><div class="fill" style="width:58%;"></div></div></div>
+        <div class="hbar"><div class="t"><span>スマホ首・ストレートネック</span><span>49%</span></div><div class="track"><div class="fill" style="width:49%;"></div></div></div>
+        <div class="hbar"><div class="t"><span>疲れやすさ・だるさ</span><span>41%</span></div><div class="track"><div class="fill" style="width:41%;"></div></div></div>
+        <p style="font-size:11.5px;color:#94a3b8;margin-top:6px;">※ 自覚症状アンケートをもとにした参考値（複数回答）。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 改善エクササイズ例 -->
+<section class="section alt">
+  <div class="wide">
+    <div class="section-head">
+      <span class="ey">EXERCISE GUIDE</span>
+      <h2>診断後に提案する改善メニュー例</h2>
+      <p>姿勢タイプに合わせて、自宅でできるストレッチ・運動をわかりやすく提案します。</p>
+    </div>
+    <div class="grid4">
+      <div class="ph-card"><img class="ph" src="../assets/photos/photo_06.jpg" alt="胸を開くストレッチをする女性" loading="lazy"><div class="bd"><h3>胸開きストレッチ</h3><p>巻き肩・猫背タイプに。固まった胸まわりをゆるめて姿勢をリセット。</p></div></div>
+      <div class="ph-card"><img class="ph" src="../assets/photos/photo_12.jpg" alt="体幹トレーニングをする人" loading="lazy"><div class="bd"><h3>体幹エクササイズ</h3><p>反り腰・骨盤の傾きタイプに。土台となる体幹を安定させます。</p></div></div>
+      <div class="ph-card"><img class="ph" src="../assets/photos/photo_15.jpg" alt="首肩のストレッチをする女性" loading="lazy"><div class="bd"><h3>首・肩リセット</h3><p>スマホ首タイプに。前に出た頭の位置を整え、こりを和らげます。</p></div></div>
+      <div class="ph-card"><img class="ph" src="../assets/photos/photo_23.jpg" alt="ストレッチをする女性" loading="lazy" onerror="this.src='../assets/photos/photo_07.jpg'"><div class="bd"><h3>習慣チェック</h3><p>頬杖・足組みなどのクセを見直し、日常から姿勢を底上げします。</p></div></div>
+    </div>
+  </div>
+</section>
+
 <!-- シーン別 -->
 <section class="section">
   <div class="wide">
@@ -307,8 +395,37 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
   </div>
 </section>
 
+<!-- 利用者の声 -->
+<section class="section" id="voices">
+  <div class="wide">
+    <div class="section-head">
+      <span class="ey">VOICES</span>
+      <h2>ご利用いただいた方の声</h2>
+      <p>「自分の姿勢タイプが分かった」という声を多くいただいています。</p>
+    </div>
+    <div class="grid3">
+      <div class="voice-card">
+        <div class="stars">★★★★★</div>
+        <p class="q">「在宅勤務で肩こりがひどく…。診断で猫背タイプと分かり、提案されたストレッチを続けたら朝のだるさが軽くなりました。」</p>
+        <div class="who"><img src="../assets/photos/photo_08.jpg" alt="利用者"><div><b>30代・会社員</b><span>デスクワーク中心</span></div></div>
+      </div>
+      <div class="voice-card">
+        <div class="stars">★★★★★</div>
+        <p class="q">「スマホばかり見ていて首がつらかったのですが、スマホ首タイプと数値で出て納得。意識するきっかけになりました。」</p>
+        <div class="who"><img src="../assets/photos/photo_19.jpg" alt="利用者"><div><b>20代・学生</b><span>スマホ利用が多い</span></div></div>
+      </div>
+      <div class="voice-card">
+        <div class="stars">★★★★☆</div>
+        <p class="q">「登録なしで30秒。結果のグラフで弱い部分がひと目で分かるのが良かったです。家族にもすすめました。」</p>
+        <div class="who"><img src="../assets/photos/photo_14.jpg" alt="利用者"><div><b>40代・主婦</b><span>立ち仕事・家事が中心</span></div></div>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:11.5px;color:#94a3b8;margin-top:16px;">※ 個人の感想であり、効果を保証するものではありません。</p>
+  </div>
+</section>
+
 <!-- よくある質問 -->
-<section class="section" id="faq">
+<section class="section alt" id="faq">
   <div class="wide" style="max-width:780px;">
     <div class="section-head">
       <span class="ey">FAQ</span>
